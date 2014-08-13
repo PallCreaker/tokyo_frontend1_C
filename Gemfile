@@ -38,3 +38,7 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'zurb-foundation'
+group :development do
+  gem 'rails_layout'
+end

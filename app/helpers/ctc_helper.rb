@@ -1,0 +1,2 @@
+module CtcHelper
+end
