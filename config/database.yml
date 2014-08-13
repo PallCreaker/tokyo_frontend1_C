@@ -22,7 +22,8 @@ development:
   database: ctc_dev
   reconnect: false
   username: testuser
-  password: ctcdevelop
+  password: testuser
+  socket: /private/tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -53,5 +54,6 @@ test:
 production:
   <<: *default
   database: ctc_production
+  reconnect: false
   username: ctc
   password: <%= ENV['CTC_DATABASE_PASSWORD'] %>
