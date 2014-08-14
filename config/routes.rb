@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
   get 'ctc/index'
+  get 'ctc/dummy_category'
+  get 'ctc/dummy_question'
+  get 'ctc/dummy_comment'
+  get 'ctc/dummy_user'
+  get 'ctc/dummy_request'
+  get 'ctc/dummy_special'
+  get 'ctc/dummy_interest'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
