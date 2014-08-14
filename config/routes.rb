@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'ctc/index2'
   get 'ctc/form'
   get 'ctc/service'
+  get 'ctc/people0'
   get 'ctc/dummy_category'
   get 'ctc/dummy_question'
   get 'ctc/dummy_comment'
