@@ -2,6 +2,11 @@ class CtcController < ApplicationController
   def index
   end
 
+  def people0
+    user_id = params[:user_id]
+    @recommended_users = User.get_recommended(user_id)
+  end
+
   def dummy_category
     render :json => Category.select('*')
   end
