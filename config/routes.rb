@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'ctc/index'
+  get 'ctc/index1'
+  get 'ctc/index2'
   get 'ctc/dummy_category'
   get 'ctc/dummy_question'
   get 'ctc/dummy_comment'
