@@ -18,3 +18,5 @@
 *~
 *.swp
 /docs/nbproject/private/
+.DS_STORE
+/config/database.yml
