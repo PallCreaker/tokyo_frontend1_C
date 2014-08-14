@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20140814014830) do
   end
 
   create_table "specials", force: true do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "category_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
