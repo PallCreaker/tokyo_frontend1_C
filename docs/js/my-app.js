@@ -12,20 +12,39 @@ var mainView = myApp.addView('.view-main', {
 
 // Callbacks to run specific code for specific pages, for example for About page:
 myApp.onPageInit('about', function (page) {
-    alert('test');
     // run createContentPage func after link was clicked
     $$('.create-page').on('click', function () {
         createContentPage();
     });
 });
 myApp.onPageInit('index1', function (page) {
-        alert('test');
-
     // run createContentPage func after link was clicked
-    myApp.alert('今あなたが学びたい、手をつけようとしている分野を選択してください','お知らせ');
-    $$('.create-page').on('click', function () {
-        createContentPage();
+    $$('.closeFooterNotification').on('click', function () {
+        
+        $$('.footerNotification').hide();
     });
+    //myApp.alert('今あなたが学びたい、手をつけようとしている分野を選択してください','お知らせ');
+});
+myApp.onPageInit('index2', function (page) {
+    // run createContentPage func after link was clicked
+/*    myApp.modal({
+       title:  'お知らせ',
+       text: '「経済」カテゴリでは、より専門的な内容を選択することが出来ます。',
+       buttons: [
+         {
+           text: '経済',
+           onClick: function() {
+             myApp.alert('経済を選択しました。','先の画面に遷移します')
+           }
+         },
+         {
+           text: '選択する',
+           onClick: function() {
+           }
+         }
+       ]
+     })
+*/
 });
 
 
