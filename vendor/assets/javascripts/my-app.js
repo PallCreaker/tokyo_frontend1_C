@@ -27,7 +27,9 @@ myApp.onPageInit('index1', function (page) {
 myApp.onPageInit('index2', function (page) {
     // run createContentPage func after link was clicked
 
-
+    $$('a#trans-people').on('click', function () {
+        location.href = '/ctc/people0/3'
+    });
 });
 
 
