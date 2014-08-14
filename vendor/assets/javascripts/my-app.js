@@ -20,13 +20,14 @@ myApp.onPageInit('about', function (page) {
 myApp.onPageInit('index1', function (page) {
     // run createContentPage func after link was clicked
     $$('.closeFooterNotification').on('click', function () {
-        
         $$('.footerNotification').hide();
     });
 });
 
 myApp.onPageInit('index2', function (page) {
     // run createContentPage func after link was clicked
+
+
 });
 
 

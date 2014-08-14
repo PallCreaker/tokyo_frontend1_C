@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'ctc/form'
   get 'ctc/service'
   get 'ctc/people0'
+  get 'ctc/fetch_interests/:user_id' => 'ctc#fetch_interests'
+  get 'ctc/fetch_specialists/:user_id' => 'ctc#fetch_specialists'
   get 'ctc/dummy_category'
   get 'ctc/dummy_question'
   get 'ctc/dummy_comment'
