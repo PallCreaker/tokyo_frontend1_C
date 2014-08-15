@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <%= csrf_meta_tags %> -->
-  </head>
-  <body>
-
         <!-- Status bar overlay for fullscreen mode-->
         <div class="statusbar-overlay"></div>
         <!-- Panels overlay-->
@@ -39,7 +31,7 @@
                 <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
                 <div class="pages navbar-through toolbar-through">
                     <!-- Page, data-page contains page name-->
-                    <div data-page="index1" class="page">
+                    <div data-page="next" class="page">
                         <!-- Scrollable page content-->
                         <div class="page-content">
                             <!-- Search bar -->
@@ -55,7 +47,8 @@
                             <div class="content-block-title">カテゴリ</div>
                             <div class="list-block">
                                 <ul>
-                                    <li><a href="index2.html" class="item-link">
+                                    <!-- hrefは拡張子無しでも勿論ok -->
+                                    <li><a href="/logins/last" class="item-link">
                                             <div class="item-content">
                                                 <div class="item-inner">
                                                     <div class="item-title">経済</div>
@@ -91,10 +84,3 @@
                 </div>
             </div>
         </div>
-        <!-- Path to Framework7 Library JS-->
-        <script type="text/javascript" src="/assets/framework7.min.js"></script>
-        <!-- Path to your app js-->
-        <script type="text/javascript" src="/assets/my-app.js"></script>
-
-    </body>
-</html>

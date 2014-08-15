@@ -2,7 +2,7 @@ class CtcController < ApplicationController
   def index
   end
 
-  def people0
+  def matching
     user_id = params[:user_id]
     @recommended_users = User.get_recommended(user_id)
   end
