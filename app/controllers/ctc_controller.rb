@@ -1,10 +1,22 @@
 class CtcController < ApplicationController
   def index
+    render :template => 'ctc/register/root'
+  end
+  def register_middle
+    render :template => 'ctc/register/middle'
+  end
+  def register_leaf
+    render :template => 'ctc/register/leaf'
   end
 
-  def people0
+  def main
+    render :template => 'ctc/main/index'
+  end
+
+  def matching
     user_id = params[:user_id]
     @recommended_users = User.get_recommended(user_id)
+    render :template => 'ctc/main/matching'
   end
 
   def dummy_category

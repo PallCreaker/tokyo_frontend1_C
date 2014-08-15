@@ -5,9 +5,13 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-myApp.onPageInit('people0', function (page) {
+var mainContentsCallbacks = myApp.onPageInit('main', function (page) {
+	$$('#main-page').click();
 });
 
+myApp.onPageInit('matching', function (page) {
+	$$('.preloader').hide();
+});
 
 $$('#notification').on('click', function(){
 	myApp.addNotification({
@@ -16,3 +20,4 @@ $$('#notification').on('click', function(){
 	});
 });
 
+mainContentsCallbacks.trigger();
