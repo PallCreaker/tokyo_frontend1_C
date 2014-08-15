@@ -14,7 +14,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/bin
 
 *~
 *.swp
 /docs/nbproject/private/
+.DS_STORE
+/config/database.yml

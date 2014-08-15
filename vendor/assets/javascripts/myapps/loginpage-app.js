@@ -10,16 +10,16 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-myApp.onPageInit('register_root', function (page) {
+myApp.onPageInit('next', function (page) {
     // run createContentPage func after link was clicked
     $$('.closeFooterNotification').on('click', function () {
         $$('.footerNotification').hide();
     });
 });
 
-myApp.onPageInit('register_leaf', function (page) {
+myApp.onPageInit('last', function (page) {
     $$('a#sel-cat').on('click', function () {
-        location.href = '/ctc/main'
+        location.href = '/ctc/index'
     });
 });
 
