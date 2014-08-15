@@ -6,7 +6,13 @@ var mainView = myApp.addView('.view-main', {
 });
 
 myApp.onPageInit('people0', function (page) {
-    $$('.create-page').on('click', function () {
-        createContentPage();
-    });
 });
+
+
+$$('#notification').on('click', function(){
+	myApp.addNotification({
+    	title: 'Hello world',
+    	message: 'Notifications exist!'
+	});
+});
+

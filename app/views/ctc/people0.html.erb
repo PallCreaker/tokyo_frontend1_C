@@ -15,6 +15,9 @@
             <!-- Top Navbar-->
             <div class="navbar">
                 <div class="navbar-inner">
+                    <div class="left">
+                        <span class="preloader"></span>
+                    </div>
                     <div class="center sliding">
                         回答する人を探す
                     </div>
@@ -70,13 +73,28 @@
                 </div>
             </div>
             <!-- Bottom Toolbar Begin -->
-            <div class="toolbar">
+            <div class="toolbar tabbar ">
                 <div class="toolbar-inner">
-                    <a href="#" class="link">人間</a>
-                    <a href="#" class="link">通知</a>
-                    <a href="#" class="link">探す</a>
-                    <a href="#" class="link">質問</a>
-                    <a href="#" class="link">アカウント</a>
+                    <a href="#recommend" id="recommend" class="tab-link active">
+                        <i class="icon demo-icon-1"></i>
+                        <!-- <span class="tabbar-label">Recommend</span> -->
+                    </a>
+                    <a href="#notification" id="notification" class="tab-link active">
+                        <i class="icon demo-icon-1"></i>
+                        <!-- <span class="tabbar-label">Notifications</span> -->
+                    </a>
+                    <a href="#search" id="search" class="tab-link active">
+                        <i class="icon demo-icon-1"></i>
+                        <!-- <span class="tabbar-label">Search</span> -->
+                    </a>
+                    <a href="#question" id="question" class="tab-link active">
+                        <i class="icon demo-icon-1"></i>
+                        <!-- <span class="tabbar-label">Questions</span> -->
+                    </a>
+                    <a href="#mypage" id="mypage" class="tab-link active">
+                        <i class="icon"></i>
+                        <!-- <span class="tabbar-label">My page</span> -->
+                    </a>
                 </div>
             </div>
             <!-- Bottom Toolbar End -->
@@ -84,6 +102,6 @@
     </div>
 
     <script type="text/javascript" src="/assets/framework7.min.js"></script>
-    <script type="text/javascript" src="/assets/people0.js"></script>
+    <script type="text/javascript" src="/assets/people-fw7.js"></script>
 </body>
 </html>
