@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'ctc/index'
-  get 'ctc/index1'
-  get 'ctc/index2'
-  get 'ctc/form'
-  get 'ctc/service'
+
+  get 'login/index', to: 'logins#index'
+  get 'login/index1', to: 'logins#index'
+  get 'login/index2', to: 'logins#index'
   get 'ctc/people0/:user_id' => 'ctc#people0'
   get 'ctc/fetch_interests/:user_id' => 'ctc#fetch_interests'
   get 'ctc/fetch_specialists/:user_id' => 'ctc#fetch_specialists'
