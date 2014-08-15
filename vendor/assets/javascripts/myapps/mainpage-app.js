@@ -6,18 +6,13 @@ var mainView = myApp.addView('.view-main', {
 });
 
 var mainContentsCallbacks = myApp.onPageInit('main', function (page) {
-	$$('#main-page').click();
+
 });
 
-myApp.onPageInit('matching', function (page) {
-	$$('.preloader').hide();
-});
-
-$$('#notification').on('click', function(){
-	myApp.addNotification({
-    	title: 'Hello world',
-    	message: 'Notifications exist!'
-	});
-});
-
-mainContentsCallbacks.trigger();
+// notification sample
+// $$('#notification').on('click', function(){
+// 	myApp.addNotification({
+// 		title: 'Hello world',
+// 		message: 'Notifications exist!'
+// 	});
+// });

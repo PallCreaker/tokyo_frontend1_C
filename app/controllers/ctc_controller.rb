@@ -7,6 +7,18 @@ class CtcController < ApplicationController
     @recommended_users = User.get_recommended(user_id)
   end
 
+  def notification
+
+  end
+
+  def question
+
+  end
+
+  def questions
+
+  end
+
   def dummy_category
     render :json => Category.select('*')
   end
