@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <%= csrf_meta_tags %> -->
+    <script type="text/javascript" src="/assets/common/main/mainpage.js"></script>
+</head>
+    <body>
+        <!-- Status bar overlay for fullscreen mode-->
+        <div class="statusbar-overlay"></div>
+        <!-- Panels overlay-->
+        <div class="panel-overlay"></div>
+        <!-- Views-->
+        <div class="views">
+            <!-- Your main view, should have "view-main" class-->
+            <div class="view view-main">
+                <!-- Top Navbar-->
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="left">
+                            <a href="people0.html" class="back link"><i class="icon icon-back-blue"></i><span>Back</span></a>
+                        </div>
+                        <!-- We have home navbar without left link-->
+                        <div class="center sliding">Fujita Kazumasaの質問</div>
+                        <div class="right">
+                            <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"><i class="icon icon-bars-blue"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+                <div class="pages navbar-through toolbar-through">
+                    <!-- Page, data-page contains page name-->
+                    <div data-page="answer" class="page">
+                        <!-- Scrollable page content-->
+                        <div class="page-content">
+                            <div class="content-block">
+                                <div class="item-content">
+                                    <div class="list-block">
+                                        <ul>
+                                            <li class="item-content">
+                                                <div class="row" style="width: 100%;">
+                                                    <div class="col-30" style="margin:10px;"><img src="/assets/i-form-name.png" alt="Profile"></div>
+                                                    <div class="col-70" style="width: 100%;">
+                                                        <span style="font-size: 20px;">Fujita Kazumasa</span>
+                                                        <div class="row" style="width: 100%">
+                                                            <div class="col-50"><strong>興味</strong><br>金融</div>
+                                                            <div class="col-50"><strong>専攻</strong><br>情報</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-left: 5px;">
+                                <div class="content-block-title">Fujita Kazumasaの質問</div>
+                                <!-- -->
+                                <div class="popover popover-about modal-in" style="display: block;position:static;">
+                                    <div class="popover-angle on-top" style="position:relative;left: 15px;"></div>
+                                    <div class="popover-inner">
+                                        <div class="content-block">
+                                            <p>◯◯を始めるには</p>
+                                            <p>何から手を付けたらいいですか？</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- -->
+                                <div class="list-block">
+                                    <div class="row">
+                                        <div class="col-80">
+
+                                            <ul>
+                                                <!-- Additional "align-top" class for correct textarea alignment -->
+                                                <li class="align-top">
+                                                    <div class="item-content">
+                                                        <div class="item-inner">
+                                                            <div class="item-title label">答えてください</div>
+                                                            <div class="item-input">
+                                                                <textarea></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-20">
+                                            <img src="/assets/i-form-name.png" alt="Profile"><br>
+                                            自分
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-80">
+                                            <a href="#" class="button button-big button-submit">回答する</a>
+                                        </div>
+                                        <div class="col-20"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <%=render :partial =>'bottom_bar' %>
+            </div>
+        </div>
+        <!-- Path to Framework7 Library JS-->
+        <script type="text/javascript" src="/assets/fw7/framework7.min.js"></script>
+        <!-- Path to your app js-->
+        <script type="text/javascript" src="/assets/myapps/mainpage-app.js"></script>
+    </body>
+</html>

@@ -13,11 +13,25 @@ myApp.onPageInit('matching', function (page) {
 	$$('.preloader').hide();
 });
 
-$$('#notification').on('click', function(){
-	myApp.addNotification({
-    	title: 'Hello world',
-    	message: 'Notifications exist!'
-	});
+myApp.onPageInit('notification', function (page) {
+
 });
+
+myApp.onPageInit('question', function (page) {
+
+});
+
+myApp.onPageInit('questions', function (page) {
+
+});
+
+// notification sample
+// $$('#notification').on('click', function(){
+// 	myApp.addNotification({
+// 		title: 'Hello world',
+// 		message: 'Notifications exist!'
+// 	});
+// });
+
 
 mainContentsCallbacks.trigger();
