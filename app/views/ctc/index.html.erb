@@ -16,10 +16,12 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <div class="left">
-                        <span class="preloader"></span>
+                        <a href="#" class="link icon-only open-panel">
+                            +
+                        </a>
                     </div>
                     <div class="center sliding">
-                        回答する人を探す
+                        ○○を初めて学ぶには
                     </div>
                     <div class="right">
                         <a href="#" class="link icon-only open-panel">
@@ -33,11 +35,15 @@
                 <div data-page="main" class="page">
                     <!-- Scrollable page content-->
                     <div class="page-content">
-                        <a href="matching/3" id="main-page"></a>
+                        <!-- 下のhrefの意味はuser_id==3のひとにマッチングする人を要求してる -->
+                        <!-- <a href="matching/3" id="main-page"></a> -->
+
+
+
+
                     </div>
                 </div>
             </div>
-            <%=render :partial =>'bottom_bar' %>
         </div>
     </div>
 
