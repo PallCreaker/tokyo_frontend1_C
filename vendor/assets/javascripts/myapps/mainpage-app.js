@@ -22,6 +22,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
             'filter': 'none'
         });
     });
+    // console.log(this);
     $(function() {
         myApp.popup('.popup-notification');
         var flatcolors = [

@@ -47,7 +47,7 @@
                                     <% unless category['children'].count == 0 then %>
                                       <a href="/logins/next/<%=category['id'] %>" class="item-link">
                                     <% else %>
-                                      <a href="#" class="item-link">
+                                      <a href="#" class="item-link" id="cat_fin">
                                     <% end %>
                                     <%=category['name'] %>
                                     </a>
@@ -65,6 +65,16 @@
                             </li>
                             <% end %>
                         </ul>
+                    </div>
+                    <div class="footerNotification">
+                        <h3>あなたの興味あるのは</h3>
+                        <p></p>
+                            <div class="row">
+                              <div class="col-50"><a href="#" data-panel="left" class="button">キャンセル</a></div>
+                              <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
+                              <div class="col-50"><a href="#" id="sel-cat" data-panel="right" class="button active">選択する</a></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -28,19 +28,25 @@ myApp.onPageInit('next', function (page) {
 	$$('div.item-inner').on('click', function(){
 		// 片方だけでは動作しない．内部処理が連鎖をhookにしている．
 		var a_item = $$(this).find('a.item-link')[0];
-		// console.log(item);
 		a_item.click();
 		var div_item = $$(this).find('div.item-title')[0];
-		// console.log(item2);
 		div_item.click();
+        $$('#cat_fin').on('click', function () {
+            var cat = $(this).text();
+            $(".footerNotification p").text(cat + 'ですか？');
+            $(".footerNotification").slideDown();
+        });
+        $$('a#sel-cat').on('click', function () {
+            location.href = '/ctc/index'
+        });
 	});
 });
 
-myApp.onPageInit('last', function (page) {
-    $$('a#sel-cat').on('click', function () {
-        location.href = '/ctc/index'
-    });
-});
+// myApp.onPageInit('last', function (page) {
+//     $$('a#sel-cat').on('click', function () {
+//         location.href = '/ctc/index'
+//     });
+// });
 
 
 // Generate dynamic page
