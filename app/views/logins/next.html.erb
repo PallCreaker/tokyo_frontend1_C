@@ -1,86 +1,73 @@
-        <!-- Status bar overlay for fullscreen mode-->
-        <div class="statusbar-overlay"></div>
-        <!-- Panels overlay-->
-        <div class="panel-overlay"></div>
-        <!-- Left panel with reveal effect-->
-        <!--div class="panel panel-left panel-reveal">
-          <div class="content-block">
-            <p>Left panel content goes here</p>
-          </div>
-        </div>
-        <!-- Right panel with cover effect-->
-        <!--div class="panel panel-right panel-cover">
-          <div class="content-block">
-            <p>Right panel content goes here</p>
-          </div>
-        </div>
-        <!-- Views-->
-        <div class="views">
-            <!-- Your main view, should have "view-main" class-->
-            <div class="view view-main">
-                <!-- Top Navbar-->
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <div class="left">
-                            <a href="./" class="back link"><i class="icon icon-back-blue"></i><span>Back</span></a>
-                        </div>
-                        <!-- We have home navbar without left link-->
-                        <div class="center sliding">あなたの興味を選択</div>
-                    </div>
+<!-- Status bar overlay for fullscreen mode-->
+<div class="statusbar-overlay"></div>
+<!-- Panels overlay-->
+<div class="panel-overlay"></div>
+<!-- Views-->
+<div class="views">
+    <!-- Your main view, should have "view-main" class-->
+    <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="./" class="back link"><i class="icon icon-back-blue"></i><span>Back</span></a>
                 </div>
-                <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
-                <div class="pages navbar-through toolbar-through">
-                    <!-- Page, data-page contains page name-->
-                    <div data-page="next" class="page">
-                        <!-- Scrollable page content-->
-                        <div class="page-content">
-                            <!-- Search bar -->
-                            <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
-                                <div class="searchbar-input">
-                                    <input type="search" placeholder="気になるワードを検索"><a href="#" class="searchbar-clear"></a>
-                                </div><a href="#" class="searchbar-cancel">Cancel</a>
-                            </form>
+                <!-- We have home navbar without left link-->
+                <div class="center sliding">
+                    あなたの興味を選択
+                </div>
+            </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+            <!-- Page, data-page contains page name-->
+            <div data-page="next" class="page">
+                <!-- Search bar -->
+                <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
+                    <div class="searchbar-input">
+                        <input type="search" placeholder="気になるワードを検索"><a href="#" class="searchbar-clear"></a>
+                    </div>
+                    <a href="#" class="searchbar-cancel">Cancel</a>
+                </form>
 
-                            <!-- Search bar overlay -->
-                            <div class="searchbar-overlay"></div>
+                <!-- Search bar overlay -->
+                <div class="searchbar-overlay"></div>
 
-                            <div class="content-block-title">カテゴリ</div>
-                            <div class="list-block">
-                                <ul>
-                                    <!-- hrefは拡張子無しでも勿論ok -->
-                                    <li><a href="/logins/last" class="item-link">
-                                            <div class="item-content">
-                                                <div class="item-inner">
-                                                    <div class="item-title">経済</div>
-                                                </div>
-                                            </div></a></li>
-                                    <li><a href="services.html" class="item-link">
-                                            <div class="item-content">
-                                                <div class="item-inner">
-                                                    <div class="item-title">プログラミング</div>
-                                                </div>
-                                            </div></a></li>
-                                    <li><a href="form.html" class="item-link">
-                                            <div class="item-content">
-                                                <div class="item-inner">
-                                                    <div class="item-title">資格</div>
-                                                </div>
-                                            </div></a></li>
-                                    <li><a href="form.html" class="item-link">
-                                            <div class="item-content">
-                                                <div class="item-inner">
-                                                    <div class="item-title">音楽</div>
-                                                </div>
-                                            </div></a></li>
-                                </ul>
-                            </div>
-                            <div class="footerNotification">
-                                <h3>お知らせ</h3>
-                                <p>今あなたが学びたい、手をつけようとしている分野を選択してください</p>
-                                <a href="#" data-panel="center" style="width:50px;margin:0 auto;" class="button active closeFooterNotification">OK</a>
-                            </div>
-                        </div>
+                <!-- Scrollable page content-->
+                <div class="page-content">
+
+                    <div class="content-block-title">カテゴリ</div>
+                    <div class="list-block">
+                        <ul>
+                            <% @categories.each do |category| %>
+                            <li class="swipeout">
+                              <div class="swipeout-content item-content">
+                                <div class="item-inner">
+                                  <div class="item-title">
+                                    <% unless category['children'].count == 0 then %>
+                                      <a href="/logins/next/<%=category['id'] %>" class="item-link">
+                                    <% else %>
+                                      <a href="#" class="item-link">
+                                    <% end %>
+                                    <%=category['name'] %>
+                                    </a>
+                                  </div>
+                                  <div class="item-after">
+                                  <span class="badge"><%=category['children'].count unless category['children'].count == 0 %></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="swipeout-actions">
+                                <div class="swipeout-actions-inner">
+                                  <a href="#" class="add-interest">+</a>
+                                </div>
+                              </div>
+                            </li>
+                            <% end %>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>

@@ -10,11 +10,30 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+// アラートは一回だけ．
+var _is_alert_shown = false;
+
 myApp.onPageInit('next', function (page) {
-    // run createContentPage func after link was clicked
-    $$('.closeFooterNotification').on('click', function () {
-        $$('.footerNotification').hide();
-    });
+	console.log(page);
+
+	if (page.url === '/login/next/0') {
+		var msg = '今あなたが学びたい、手をつけようとしている分野を選択してください';
+
+		if (!_is_alert_shown) {
+			_is_alert_shown = true;
+			myApp.alert(msg, 'お知らせ');
+		}
+	}
+
+	$$('div.item-inner').on('click', function(){
+		// 片方だけでは動作しない．内部処理が連鎖をhookにしている．
+		var a_item = $$(this).find('a.item-link')[0];
+		// console.log(item);
+		a_item.click();
+		var div_item = $$(this).find('div.item-title')[0];
+		// console.log(item2);
+		div_item.click();
+	});
 });
 
 myApp.onPageInit('last', function (page) {
