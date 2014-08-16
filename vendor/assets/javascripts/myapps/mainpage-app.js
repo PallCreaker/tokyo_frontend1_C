@@ -16,11 +16,15 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         //
     });
     $$('#answerSubmit').on('click', function() {
-        myApp.closeModal('.popup-about');
-        thisPanel.css({
-            '-webkit-filter': 'none',
-            'filter': 'none'
-        });
+        if($('#firstStep').val() == "" || $('#secondStep').val() == "" ){
+            myApp.alert('内容が入力されていません。', 'お知らせ');
+        } else {
+            myApp.closeModal('.popup-about');
+            thisPanel.css({
+                '-webkit-filter': 'none',
+                'filter': 'none'
+            });
+        }
     });
     $(function() {
         myApp.popup('.popup-notification');
