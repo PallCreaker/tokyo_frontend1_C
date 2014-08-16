@@ -39,6 +39,9 @@ myApp.onPageInit('next', function (page) {
         $$('a#sel-cat').on('click', function () {
             location.href = '/ctc/index'
         });
+        $$('a#cancel').on('click', function() {
+            $(".footerNotification").slideUp();
+        });
 	});
 });
 
