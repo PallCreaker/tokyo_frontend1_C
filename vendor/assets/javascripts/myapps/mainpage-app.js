@@ -25,6 +25,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
     // console.log(this);
     $(function() {
         myApp.popup('.popup-notification');
+        $(".footerNotification").slideDown();
         var flatcolors = [
             '#1abc9c','#3498db','#9b59b6','#34495e',
             '#16a085','#27ae60','#2980b9','#2c3e50',
