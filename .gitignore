@@ -22,4 +22,4 @@
 .DS_STORE
 /config/database.yml
 nbproject/
-
+/vendor/bundle/
