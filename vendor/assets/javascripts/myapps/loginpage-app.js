@@ -35,7 +35,7 @@ myApp.onPageInit('next', function (page) {
     });
 
     //select categroy
-    $$('li.swipeout').on('click', function (){
+    $$('li.cat_child').on('click', function (){
         // change icon
         $$(this).find('.item-after .badge').css('display', 'none');
         $$(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
