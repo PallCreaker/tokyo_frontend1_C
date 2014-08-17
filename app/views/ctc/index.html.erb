@@ -6,7 +6,7 @@
     <script type="text/javascript" src="/assets/common/main/mainpage.js"></script>
     <link rel="stylesheet" href="/assets/common/mainpage.css" type="text/css">
   </head>
-  <body>
+  <body class="main">
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
@@ -22,7 +22,7 @@
               </a>
             </div>
             <div class="center sliding">
-              ○○を初めて学ぶには
+              ○○←変数を入れる　を初めて学ぶには
             </div>
             <div class="right">
               <a href="#" class="link icon-only open-panel">
@@ -101,7 +101,7 @@
                 <div class="item-inner">
                   <div class="item-title label">初めに何した？</div>
                   <div class="item-input">
-                    <textarea></textarea>
+                    <textarea id="firstStep"></textarea>
                   </div>
                 </div>
               </div>
@@ -113,7 +113,7 @@
                 <div class="item-inner">
                   <div class="item-title label">その後は？</div>
                   <div class="item-input">
-                    <textarea></textarea>
+                    <textarea id="secondStep"></textarea>
                   </div>
                 </div>
               </div>
@@ -127,9 +127,9 @@
     <!-- notification Popup -->
     <div class="popup popup-notification">
       <div class="footerNotification">
-        <h3>お知らせ</h3>
-        <p>パネルをタップしてください</p>
-        <a href="#" data-panel="center" style="width:50px;margin:0 auto;" class="button active closeFooterNotification">OK</a>
+        <h3>あなたの興味のある〇〇←変数が<br>モザイクになっています</h3>
+        <p>どれかモザイクをタップしてください</p>
+        <a href="#" data-panel="center" class="button active closeFooterNotification">OK</a>
       </div>
     </div>
 

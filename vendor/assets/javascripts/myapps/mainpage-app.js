@@ -6,6 +6,7 @@ var mainView = myApp.addView('.view-main', {
 });
 
 var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
+    $$('.navbar').css('display', 'block');
     var thisPanel = null;
     $$('.closeFooterNotification').on('click', function() {
         myApp.closeModal('.popup-notification');
@@ -16,14 +17,20 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         //
     });
     $$('#answerSubmit').on('click', function() {
-        myApp.closeModal('.popup-about');
-        thisPanel.css({
-            '-webkit-filter': 'none',
-            'filter': 'none'
-        });
+        if($('#firstStep').val() == "" || $('#secondStep').val() == "" ){
+            myApp.alert('内容が入力されていません。', 'お知らせ');
+        } else {
+            myApp.closeModal('.popup-about');
+            thisPanel.css({
+                '-webkit-filter': 'none',
+                'filter': 'none'
+            });
+        }
     });
+    // console.log(this);
     $(function() {
         myApp.popup('.popup-notification');
+        $(".footerNotification").slideDown();
         var flatcolors = [
             '#1abc9c','#3498db','#9b59b6','#34495e',
             '#16a085','#27ae60','#2980b9','#2c3e50',
@@ -36,13 +43,5 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         });
     });
 });
-
-// notification sample
-// $$('#notification').on('click', function(){
-// 	myApp.addNotification({
-// 		title: 'Hello world',
-// 		message: 'Notifications exist!'
-// 	});
-// });
 
 mainContentsCallbacks.trigger();
