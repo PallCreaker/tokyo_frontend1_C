@@ -34,14 +34,17 @@
     margin-right: 16px;
     padding: 2px 23px 2px 16px;
 }
-
+.navbar{
+    .sliding{font-family: 'Pacifico', cursive;}
+}
 .page[data-page="index"]{
     background-image: url('/img/top_bg_blur.png');
-    // background: #000000 url('/img/top_bg.jpg') no-repeat center;
-    // filter: blur(10px);
-    // -webkit-filter: blur(10px);
     background-size: 321px 568px;
-    // background-position-x: -104px;
+    .content-block-title{
+        font-family: 'Vollkorn', serif;
+        font-size:40px;
+        color: #303030;
+    }
     .content-block{
         @include mw(245px);
         a.button.fb{
