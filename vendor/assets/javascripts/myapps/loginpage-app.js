@@ -33,22 +33,28 @@ myApp.onPageInit('next', function (page) {
 		var div_item = $$(this).find('div.item-title')[0];
 		div_item.click();
 	});
+
+    //select categroy
     $$('li.swipeout').on('click', function (){
         // change icon
-        $(this).find('.item-after .badge').css('display', 'none');
-        $(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
+        $$(this).find('.item-after .badge').css('display', 'none');
+        $$(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
 
         // input text
-        var cat = $(this).find('#cat_fin').text();
-        $(".footerNotification p").text(cat + 'ですか？');
+        var cat = $$(this).find('#cat_fin').text();
+        $(".footerNotification p span.select_cat").text(cat);
         $(".footerNotification").slideDown();
     });
+
+    //when select, load next main page
     $$('a#sel-cat').on('click', function () {
         location.href = '/ctc/index';
     });
+
+    // when it is cancel, animetion
     $$('a#cancel').on('click', function() {
-        $('.item-after #check-badge').remove();
-        $('.item-after .badge').css('display', 'block');
+        $$('.item-after #check-badge').remove();
+        $$('.item-after .badge').css('display', 'block');
         $(".footerNotification").slideUp();
     });
 });
