@@ -1,4 +1,4 @@
-<!-- Status bar overlay for fullscreen mode-->
+﻿<!-- Status bar overlay for fullscreen mode-->
 <div class="statusbar-overlay"></div>
 <!-- Panels overlay-->
 <div class="panel-overlay"></div>
@@ -36,7 +36,7 @@
                 <!-- Scrollable page content-->
                 <div class="page-content">
 
-                    <div class="content-block-title">カテゴリ</div>
+                    <div class="content-block-title category">カテゴリ</div>
                     <div class="list-block">
                         <ul>
                             <% @categories.each do |category| %>
@@ -53,7 +53,9 @@
                                     </a>
                                   </div>
                                   <div class="item-after">
-                                  <span class="badge"><%=category['children'].count unless category['children'].count == 0 %></span>
+                                    <span class="check-icon"></span>
+                                    <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+
                                   </div>
                                 </div>
                               </div>

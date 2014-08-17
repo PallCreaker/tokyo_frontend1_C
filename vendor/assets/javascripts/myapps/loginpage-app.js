@@ -1,4 +1,4 @@
-// Initialize your app
+﻿// Initialize your app
 var myApp = new Framework7();
 
 // Export selectors engine
@@ -32,18 +32,25 @@ myApp.onPageInit('next', function (page) {
 		a_item.click();
 		var div_item = $$(this).find('div.item-title')[0];
 		div_item.click();
-        $$('#cat_fin').on('click', function () {
-            var cat = $(this).text();
-            $(".footerNotification p").text(cat + 'ですか？');
-            $(".footerNotification").slideDown();
-        });
-        $$('a#sel-cat').on('click', function () {
-            location.href = '/ctc/index'
-        });
-        $$('a#cancel').on('click', function() {
-            $(".footerNotification").slideUp();
-        });
 	});
+    $$('li.swipeout').on('click', function (){
+        // change icon
+        $(this).find('.item-after .badge').css('display', 'none');
+        $(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
+
+        // input text
+        var cat = $(this).find('#cat_fin').text();
+        $(".footerNotification p").text(cat + 'ですか？');
+        $(".footerNotification").slideDown();
+    });
+    $$('a#sel-cat').on('click', function () {
+        location.href = '/ctc/index';
+    });
+    $$('a#cancel').on('click', function() {
+        $('.item-after #check-badge').remove();
+        $('.item-after .badge').css('display', 'block');
+        $(".footerNotification").slideUp();
+    });
 });
 
 // myApp.onPageInit('last', function (page) {
