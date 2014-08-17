@@ -37,10 +37,66 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
             '#f1c40f','#e67e22','#e74c3c','#95a5a6',
             '#f39c12','#d35400','#c0392b','#7f8c8d'
         ];
-        $(".answerPanels").each(function() {
-            var rnd = Math.floor( Math.random() * flatcolors.length);
-            $(this).css('background-color',flatcolors[rnd]);
-        });
+
+        // 分割配列
+        var wDividers = [1, 2, 3, 4];
+        var hDividers = [1, 2, 3];
+        var baseWidth = $(window).width();
+        var baseHeight = $(window).height();
+        var basePanelLength = baseWidth / wDividers.length;
+        var $answerPanels = $(".answerPanels");
+        var panelsLength = $answerPanels.length;
+
+        for (var i = 0; i < panelsLength; i++) {
+        	// 基準パネルの設定
+	        var $answerPanel = $($answerPanels[i++]);
+	        var $answerPanelsSubset = $answerPanel;
+
+        	var wScale = (i == panelsLength)?wDividers[wDividers.length-2]:wDividers[Math.floor(Math.random() * (wDividers.length -1))];
+        	var hScale = hDividers[Math.floor(Math.random() * hDividers.length)];
+
+        	if (wScale * hScale > 8) {
+        		wScale--;
+        		hScale--;
+        	}
+
+        	var pWidth = basePanelLength * wScale; //最後の要素ならfillさせる
+	        var pHeight = basePanelLength * hScale;
+	        var maxWidthScale = wDividers.length - wScale;
+	        var baseMaxHeightScale = hScale;
+
+    		$answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
+			$answerPanel.width(pWidth);
+			$answerPanel.height(pHeight);
+			// 基準パネルの設定終わり．
+
+			while(maxWidthScale > 0) {
+				// 次のcolumnを作成する
+				var $nextColumn = $();
+				var maxHeightScale = baseMaxHeightScale;
+		        // column幅設定
+			    wScale = (i == panelsLength)?wDividers[maxWidthScale - 1]:wDividers[Math.floor(Math.random() * maxWidthScale)];
+			    pWidth = basePanelLength * wScale;
+		        maxWidthScale -= wScale;
+
+		        while(maxHeightScale > 0) {
+		        	hScale = hDividers[Math.floor(Math.random() * maxHeightScale)];
+			        pHeight = basePanelLength * hScale;
+			        maxHeightScale -= hScale;
+			        $answerPanel = $($answerPanels[i++]);
+		    		$answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
+					$answerPanel.width(pWidth);
+					$answerPanel.height(pHeight);
+					$nextColumn = $nextColumn.add($answerPanel);
+				}
+				// column作成
+				$nextColumn.wrapAll('<div></div>');
+				$answerPanelsSubset = $answerPanelsSubset.add($nextColumn.parent());
+			}
+
+			// row作成
+			$answerPanelsSubset.wrapAll('<div class="row"></div>');
+        };
     });
 });
 
