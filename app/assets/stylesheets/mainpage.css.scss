@@ -1,3 +1,4 @@
+@import 'common';
 body{
     margin-left: 2px;
 }
@@ -13,10 +14,6 @@ body{
 
 }
 
-#test{
-    background-color: red;
-}
-
 .footerNotification {
     position: absolute;
     bottom: 0;
@@ -24,10 +21,10 @@ body{
     background-color: #2ecc71;
     color:white;
     padding:5px;
-}
-.footerNotification a{
-    margin:3px;
-    margin-right: 10px;
+    a{
+        margin:3px;
+        margin-right: 10px;
+    }
 }
 
 .popup{
