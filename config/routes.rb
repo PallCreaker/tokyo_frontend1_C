@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  root :to => 'logins#index'
   # get 'ctc/index'
   # post 'ctc/index'
-  match 'ctc/index' => 'ctc#index', via: [:get, :post]
+  match 'ctc/index' => 'ctc#index', via: [:get]
+  match 'ctc/create' => 'ctc#create', via: [:post]
   # get 'ctc/' => 'ctc#index'
   get 'ctc/matching/:user_id' => 'ctc#matching'
   get 'ctc/notification' => 'ctc#notification'

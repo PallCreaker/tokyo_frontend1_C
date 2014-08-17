@@ -22,7 +22,7 @@
               </a>
             </div>
             <div class="center sliding">
-              ○○←変数を入れる　を初めて学ぶには
+              <%= @category.interest %>を初めて学ぶには
             </div>
             <div class="right">
               <a href="#" class="link icon-only open-panel">
@@ -127,7 +127,7 @@
     <!-- notification Popup -->
     <div class="popup popup-notification">
       <div class="footerNotification">
-        <h3>あなたの興味のある〇〇←変数が<br>モザイクになっています</h3>
+        <h3>あなたの興味のある<%= @category.interest %>が<br>モザイクになっています</h3>
         <p>どれかモザイクをタップしてください</p>
         <a href="#" data-panel="center" class="button active closeFooterNotification">OK</a>
       </div>

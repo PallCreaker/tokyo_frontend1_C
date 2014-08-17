@@ -35,6 +35,7 @@ myApp.onPageInit('next', function (page) {
     });
 
     //select categroy
+    var cat;
     $$('li.cat_child').on('click', function (){
         // change icon
         $(".badge").css('display', 'inline');
@@ -42,14 +43,24 @@ myApp.onPageInit('next', function (page) {
         $$(this).find('.item-after .badge').css('display', 'none');
         $$(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
         // input text
-        var cat = $$(this).find('#cat_fin').text();
+        cat = $$(this).find('#cat_fin').text();
         $(".footerNotification p span.select_cat").text(cat);
         $(".footerNotification").slideDown();
     });
 
     //when select, load next main page
     $$('a#sel-cat').on('click', function () {
-        location.href = '/ctc/index';
+        // location.href = '/ctc/index';
+        var metaTags = document.getElementsByTagName('meta');
+        var scrf_token = $('meta[name="csrf-token"]').attr('content');
+        var data = {
+            category: cat,
+            authenticity_token: scrf_token,
+        };
+        $.post('/ctc/create', data).done(function( responseText ) {
+            location.href = '/ctc/index';
+            console.log(data + 'success!');
+        });
     });
 
     // when it is cancel, animetion
