@@ -41,17 +41,17 @@
                         <ul>
                             <% @categories.each do |category| %>
                             <% unless category['children'].count == 0 then %>
-                            <li class="swipeout">
+                            <li>
                             <% else %>
-                            <li class="swipeout cat_child">
+                            <li class="cat_child">
                             <% end %>
-                              <div class="swipeout-content item-content">
+                              <div class="item-content">
                                 <div class="item-inner">
                                   <div class="item-title">
                                     <% unless category['children'].count == 0 then %>
                                       <a href="/logins/next/<%=category['id'] %>" class="item-link">
                                     <% else %>
-                                      <a href="#" class="item-link" id="cat_fin">
+                                      <a href="#" class="item-link" id="cat_fin" value="<%=category['id']%>">
                                     <% end %>
                                     <%=category['name'] %>
                                     </a>
@@ -61,11 +61,6 @@
                                     <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
 
                                   </div>
-                                </div>
-                              </div>
-                              <div class="swipeout-actions">
-                                <div class="swipeout-actions-inner">
-                                  <a href="#" class="add-interest">+</a>
                                 </div>
                               </div>
                             </li>

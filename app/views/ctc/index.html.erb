@@ -22,7 +22,7 @@
               </a>
             </div>
             <div class="center sliding">
-              <%= @category.interest %>を初めて学ぶには
+              <%= @user[:interests][0][:category]['name'] %>を初めて学ぶには
             </div>
             <div class="right">
               <a href="#" class="link icon-only open-panel">
@@ -38,45 +38,6 @@
             <div class="page-content">
               <!-- 下のhrefの意味はuser_id==3のひとにマッチングする人を要求してる -->
               <!-- <a href="matching/3" id="main-page"></a> -->
-                <div class="answerPanels">
-                  あああを学ぶにはまずは<br>
-                  そうです。<br>
-                  にゃなｎ<br>
-                  ああああ<br>
-                  手元にあったんで<br>
-                  あんｇちゅあｇｒｄｎ<br>
-                  そんなこともあるかもしれません。
-                  以下略
-                </div>
-                <div class="answerPanels">いいいを学ぶにはまず</div>
-                <div class="answerPanels">えええを学ぶにはまず</div>
-                <div class="answerPanels">おおおを学ぶにはまず</div>
-                <div class="answerPanels">
-                  あああを学ぶにはまずは<br>
-                  そうです。<br>
-                  にゃなｎ<br>
-                  ああああ<br>
-                  手元にあったんで<br>
-                  あんｇちゅあｇｒｄｎ<br>
-                  そんなこともあるかもしれません。
-                  以下略
-                </div>
-                <div class="answerPanels">いいいを学ぶにはまず</div>
-                <div class="answerPanels">えええを学ぶにはまず</div>
-                <div class="answerPanels">おおおを学ぶにはまず</div>
-                <div class="answerPanels">
-                  あああを学ぶにはまずは<br>
-                  そうです。<br>
-                  にゃなｎ<br>
-                  ああああ<br>
-                  手元にあったんで<br>
-                  あんｇちゅあｇｒｄｎ<br>
-                  そんなこともあるかもしれません。
-                  以下略
-                </div>
-                <div class="answerPanels">いいいを学ぶにはまず</div>
-                <div class="answerPanels">えええを学ぶにはまず</div>
-                <div class="answerPanels">おおおを学ぶにはまず</div>
             </div>
           </div>
         </div>
@@ -121,7 +82,7 @@
     <!-- notification Popup -->
     <div class="popup popup-notification">
       <div class="footerNotification">
-        <h3>あなたの興味のある<%= @category.interest %>が<br>モザイクになっています</h3>
+        <h3>あなたの興味のある<%= @user[:interests][0][:category]['name'] %>が<br>モザイクになっています</h3>
         <p>どれかモザイクをタップしてください</p>
         <a href="#" data-panel="center" class="button active closeFooterNotification">OK</a>
       </div>

@@ -1,11 +1,17 @@
 class CtcController < ApplicationController
   def index
-    @category = User.last
+    @user = User.complete_select("select * from users where id = "+params[:user_id].to_s).first()
   end
 
   def matching
     user_id = params[:user_id]
     @recommended_users = User.get_recommended(user_id)
+  end
+
+  def matching_json
+    user_id = params[:user_id]
+    @recommended_users = User.get_recommended(user_id)
+    render :json => @recommended_users
   end
 
   def notification

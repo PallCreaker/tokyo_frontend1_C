@@ -26,25 +26,26 @@ myApp.onPageInit('next', function (page) {
         }
     }
 
-    $$('div.item-inner').on('click', function(){
-        // 片方だけでは動作しない．内部処理が連鎖をhookにしている．
-        var a_item = $$(this).find('a.item-link')[0];
+    $('div.item-inner').click(function(){
+        // 片方だけでは動作しない．内部処理が連鎖をhookにしている?
+        var a_item = $(this).find('a.item-link')[0];
         a_item.click();
-        var div_item = $$(this).find('div.item-title')[0];
+        var div_item = $(this).find('div.item-title')[0];
         div_item.click();
     });
 
     //select categroy
-    var cat;
-    $$('li.cat_child').on('click', function (){
+    var selected;
+    $('li.cat_child').click(function (){
         // change icon
         $(".badge").css('display', 'inline');
         $(".icon-form-checkbox").remove();
-        $$(this).find('.item-after .badge').css('display', 'none');
-        $$(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
+        $(this).find('.item-after .badge').css('display', 'none');
+        $(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
         // input text
-        cat = $$(this).find('#cat_fin').text();
-        $(".footerNotification p span.select_cat").text(cat);
+        selected = $(this).find('a#cat_fin');
+        console.log(cat);
+        $(".footerNotification p span.select_cat").text(selected.text());
         $(".footerNotification").slideDown();
     });
 
@@ -54,11 +55,11 @@ myApp.onPageInit('next', function (page) {
         var metaTags = document.getElementsByTagName('meta');
         var scrf_token = $('meta[name="csrf-token"]').attr('content');
         var data = {
-            category: cat,
+            category: selected.val(),
             authenticity_token: scrf_token,
         };
         $.post('/ctc/create', data).done(function( responseText ) {
-            location.href = '/ctc/index';
+            location.href = '/ctc/index/3';
             console.log(data + 'success!');
         });
     });

@@ -11,11 +11,6 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
     $$('.closeFooterNotification').on('click', function() {
         myApp.closeModal('.popup-notification');
     });
-    $$(".answerPanels").on('click', function() {
-        myApp.popup('.popup-about');
-        thisPanel = $(this);
-        //
-    });
     $$('#answerSubmit').on('click', function() {
         if($('#firstStep').val() == "" || $('#secondStep').val() == "" ){
             myApp.alert('内容が入力されていません。', 'お知らせ');
@@ -27,11 +22,37 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
             });
         }
     });
-    // console.log(this);
-    $(function() {
+
+	$(function() {
         myApp.popup('.popup-notification');
         $(".footerNotification").slideDown();
-        var flatcolors = [
+    });
+
+    $.getJSON('/ctc/matching/json/3', function(json) {
+    	var jsonLength = json.length;
+    	for (var i = 0; i < jsonLength; i++) {
+    		var specialsLength = json[i].specials.length;
+    		for (var j = 0; j < specialsLength; j++) {
+    			var howLength = json[i].specials[j].how_to_start.length;
+    			for (var k = 0; k < howLength; k++) {
+    				var howToStart = json[i].specials[j].how_to_start[k];
+    				var content = '最初:'+
+    					howToStart.first_content+
+    					'<br>'+
+    					'次:'+
+    					howToStart.next_content;
+    				var panelHtml = '<div class="answerPanels">'+content+'</div>';
+    				$('.page-content').append(panelHtml);
+    			}
+    		}
+    	};
+
+    	$$(".answerPanels").on('click', function() {
+        	myApp.popup('.popup-about');
+        	thisPanel = $(this);
+    	});
+
+    	var flatcolors = [
             '#1abc9c','#3498db','#9b59b6','#34495e',
             '#16a085','#27ae60','#2980b9','#2c3e50',
             '#f1c40f','#e67e22','#e74c3c','#95a5a6',
@@ -41,9 +62,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         // 分割配列
         var wDividers = [1, 2, 3, 4];
         var hDividers = [1, 2, 3];
-        var baseWidth = $(window).width();
-        var baseHeight = $(window).height();
-        var basePanelLength = baseWidth / wDividers.length;
+        var basePanelLength = Math.min($(window).width(), $(window).height()) / wDividers.length;
         var $answerPanels = $(".answerPanels");
         var panelsLength = $answerPanels.length;
 
