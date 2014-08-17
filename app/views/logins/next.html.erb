@@ -40,7 +40,11 @@
                     <div class="list-block">
                         <ul>
                             <% @categories.each do |category| %>
+                            <% unless category['children'].count == 0 then %>
                             <li class="swipeout">
+                            <% else %>
+                            <li class="swipeout cat_child">
+                            <% end %>
                               <div class="swipeout-content item-content">
                                 <div class="item-inner">
                                   <div class="item-title">
