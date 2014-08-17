@@ -1,6 +1,13 @@
 @import 'common';
-body{
-    margin-left: 2px;
+// body{margin-left: 2px;}
+.main{
+    .popup{
+        .popup-notification.modal-in{
+            height: 180px;
+            top: 388px;
+        }
+        background:none;
+    }
 }
 
 .answerPanels{
@@ -12,19 +19,6 @@ body{
     -webkit-filter: blur(3px);
     filter: blur(3px);
 
-}
-
-.footerNotification {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #2ecc71;
-    color:white;
-    padding:5px;
-    a{
-        margin:3px;
-        margin-right: 10px;
-    }
 }
 
 .popup{
