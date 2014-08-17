@@ -1,32 +1,31 @@
 // Place all the styles related to the Logins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.page[data-page="index"]{
-    /*background: none;*/
-    /*background: #000000 url(../../images/top_bg.jpg) no-repeat center;*/
-    background-image: url('/img/top_bg.jpg') no-repeat center;
-    /* -webkit-background-size: cover; */
-    background-size: cover;
+// 
+@mixin mw($width, $margin_bottom : 0px){
+    margin: 0 auto $margin_bottom;
+    width: $width;
 }
-.content-block a.button.fb {
-    background: #3b72bd;
-    color: #fff;
+
+@mixin opacity($alphavalue, $important : false) {
+    @if $important {
+        opacity: $alphavalue;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{ $alphavalue * 100 })"; // for IE 8
+        filter: alpha(opacity=#{ $alphavalue * 100 }); // for IE 5-7
+    }@else{
+        opacity: $alphavalue !important;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{ $alphavalue * 100 })" !important; // for IE 8
+        filter: alpha(opacity=#{ $alphavalue * 100 }) !important; // for IE 5-7
+    }
 }
-.content-block a.button.fb:hover{
-    opacity: .4;
+
+@mixin radius($rad){
+    border-radius: $rad;
+    -webkit-border-radius: $rad;
+    -moz-border-radius: $rad;
 }
-.login-fb{
-    margin: 0 auto;
-    width: 245px;
-}
-.content-block a.button.fb img {  
-    float: left;
-    width: 33px;
-}
-.mv-btn-txt {
-    float: left;
-}
-.button.fb {
+
+%button {
     border-radius: 24px;
     float: left;
     font-size: 16px;
@@ -34,6 +33,34 @@
     line-height: 35px;
     margin-right: 16px;
     padding: 2px 23px 2px 16px;
+}
+
+.page[data-page="index"]{
+    background-image: url('/img/top_bg_blur.png');
+    // background: #000000 url('/img/top_bg.jpg') no-repeat center;
+    // filter: blur(10px);
+    // -webkit-filter: blur(10px);
+    background-size: 321px 568px;
+    // background-position-x: -104px;
+    .content-block{
+        @include mw(245px);
+        a.button.fb{
+            @extend %button;
+            background: #3b72bd;
+            color: #fff;
+            img{
+                float: left;
+                width: 33px;
+            }
+            .mv-btn-txt {float: left;}
+            &:hover{
+                @include opacity(0.4);
+            }
+        }
+        .content-block-inner{
+            background: none;
+        }
+    }
 }
 
 .footerNotification {
@@ -45,26 +72,16 @@
     color:white;
     padding:5px;
     display: none;
-}
-.footerNotification a{
-    margin:3px;
-    margin-right: 10px;
+    a{
+        margin:3px;
+        margin-right: 10px;
+    }
 }
 
 /* clearfix */
 .cf:before,
-.cf:after {
-  content: "";
-  display: block;
-  overflow: hidden;
-}
-
-.cf:after {
-  clear: both;
-}
-
-/*For IE 6/7 (trigger hasLayout) */
-.cf {
-  zoom: 1;
-  clear: both;
-}
+.cf:after {content:""; display:block; overflow:hidden;}
+.cf:after {clear:both;}
+ /*For IE 6/7 (trigger hasLayout) */
+.cf {zoom: 1; clear: both;}
+.cl{clear: both}
