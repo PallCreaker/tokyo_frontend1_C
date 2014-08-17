@@ -12,10 +12,11 @@ var mainView = myApp.addView('.view-main', {
 
 // アラートは一回だけ．
 var _is_alert_shown = false;
-
+// myApp.onPageInit('index', function (page) {
+//     $$('.navbar').css('display', 'none');
+// }
 myApp.onPageInit('next', function (page) {
-	console.log(page);
-
+    $$('.navbar').css('display', 'block');
 	if (page.url === '/login/next/0') {
 		var msg = '今あなたが学びたい、手をつけようとしている分野を選択してください';
 

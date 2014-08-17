@@ -6,6 +6,7 @@ var mainView = myApp.addView('.view-main', {
 });
 
 var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
+    $$('.navbar').css('display', 'block');
     var thisPanel = null;
     $$('.closeFooterNotification').on('click', function() {
         myApp.closeModal('.popup-notification');
