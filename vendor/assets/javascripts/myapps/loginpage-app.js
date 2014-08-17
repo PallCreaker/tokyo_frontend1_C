@@ -37,9 +37,10 @@ myApp.onPageInit('next', function (page) {
     //select categroy
     $$('li.cat_child').on('click', function (){
         // change icon
+        $(".badge").css('display', 'inline');
+        $(".icon-form-checkbox").remove();
         $$(this).find('.item-after .badge').css('display', 'none');
         $$(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
-
         // input text
         var cat = $$(this).find('#cat_fin').text();
         $(".footerNotification p span.select_cat").text(cat);
