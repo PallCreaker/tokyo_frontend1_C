@@ -1,5 +1,6 @@
 class CtcController < ApplicationController
   def index
+    @category = User.last
   end
 
   def matching
@@ -17,6 +18,19 @@ class CtcController < ApplicationController
 
   def questions
 
+  end
+
+  def create
+    render :nothing => true
+    @category = params[:category] unless params[:category].nil?
+    @user = User.new(interest: @category, fb_name: 'fujitakazumasa')
+    if @user.save
+      # format.html { redirect_to @user, notice: 'Product was successfully created.' }
+      # format.json { render :show, status: :created, location: @user }
+    else
+      # format.html { render :new }
+      # format.json { render json: @user.errors, status: :unprocessable_entity }
+    end
   end
 
   def dummy_category
@@ -70,4 +84,8 @@ class CtcController < ApplicationController
     render :json => specialists if specialists
     render :json => [] unless specialists
   end
+  private
+    def ctc_params
+      params.require(:data).permit(:category)
+    end
 end

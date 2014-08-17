@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814014830) do
+ActiveRecord::Schema.define(version: 20140817161956) do
 
   create_table "categories", force: true do |t|
     t.integer  "parent_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140814014830) do
     t.string   "fb_name",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "interest"
   end
 
 end
