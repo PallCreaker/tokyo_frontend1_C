@@ -43,7 +43,6 @@ myApp.onPageInit('next', function (page) {
         // input text
         var cat = $$(this).find('#cat_fin').text();
         $(".footerNotification p span.select_cat").text(cat);
-        console.log($(this));
         $(".footerNotification").slideDown();
     });
 
