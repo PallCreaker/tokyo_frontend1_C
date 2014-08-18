@@ -33,84 +33,84 @@
           </div>
           <a href="#" class="searchbar-cancel">Cancel</a>
         </form>
-      </div>
 
-      <!-- Search bar overlay -->
-      <div class="searchbar-overlay"></div>
+        <!-- Search bar overlay -->
+        <div class="searchbar-overlay"></div>
 
-      <!-- Scrollable page content-->
-      <div class="page-content">
+        <!-- Scrollable page content-->
+        <div class="page-content">
 
-        <div class="content-block-title category">カテゴリ</div>
-        <div class="list-block">
-          <ul>
-            <% @categories.each do |category| %>
-            <% unless category['children'].count == 0 then %>
-            <li>
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-title">
-                    <% unless category['children'].count == 0 then %>
-                    <a href="/logins/next/<%=category['id'] %>" class="item-link">
-                      <%=category['name'] %>
-                    </a>
-                    <% else %>
-                    <a href="<%=category['id']%>" class="item-link" id="cat_fin">
-                      <%=category['name'] %>
-                    </a>
-                    <% end %>
-                  </div>
-                  <div class="item-after">
-                    <span class="check-icon"></span>
-                    <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+          <div class="content-block-title category">カテゴリ</div>
+          <div class="list-block">
+            <ul>
+              <% @categories.each do |category| %>
+              <% unless category['children'].count == 0 then %>
+              <li>
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">
+                      <% unless category['children'].count == 0 then %>
+                      <a href="/logins/next/<%=category['id'] %>" class="item-link">
+                        <%=category['name'] %>
+                      </a>
+                      <% else %>
+                      <a href="<%=category['id']%>" class="item-link" id="cat_fin">
+                        <%=category['name'] %>
+                      </a>
+                      <% end %>
+                    </div>
+                    <div class="item-after">
+                      <span class="check-icon"></span>
+                      <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <% else %>
-            <li class="cat_child">
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-title">
-                    <% unless category['children'].count == 0 then %>
-                    <a href="/logins/next/<%=category['id'] %>" class="item-link">
-                      <%=category['name'] %>
-                    </a>
-                    <% else %>
-                    <a href="<%=category['id']%>" class="item-link" id="cat_fin">
-                      <%=category['name'] %>
-                    </a>
-                    <% end %>
-                  </div>
-                  <div class="item-after">
-                    <span class="check-icon"></span>
-                    <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+              </li>
+              <% else %>
+              <li class="cat_child">
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">
+                      <% unless category['children'].count == 0 then %>
+                      <a href="/logins/next/<%=category['id'] %>" class="item-link">
+                        <%=category['name'] %>
+                      </a>
+                      <% else %>
+                      <a href="<%=category['id']%>" class="item-link" id="cat_fin">
+                        <%=category['name'] %>
+                      </a>
+                      <% end %>
+                    </div>
+                    <div class="item-after">
+                      <span class="check-icon"></span>
+                      <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <% end %>
-            <% end %>
-          </ul>
-        </div>
-        <div class="footerNotification firstInformation">
-          <h3>お知らせ</h3>
-          <p>今あなたが学びたい、手をつけようとしている分野を選択してください</p>
-          <div class="row">
-            <div class="col-25"></div>
-            <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
-            <div class="col-50"><a href="#" id="closeFirstInformation" data-panel="right" class="button active">OK</a></div>
-            <div class="col-25"></div>
+              </li>
+              <% end %>
+              <% end %>
+            </ul>
+          </div>
+          <div class="footerNotification firstInformation">
+            <h3>お知らせ</h3>
+            <p>今あなたが学びたい、手をつけようとしている分野を選択してください</p>
+            <div class="row">
+              <div class="col-25"></div>
+              <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
+              <div class="col-50"><a href="#" id="closeFirstInformation" data-panel="right" class="button active">OK</a></div>
+              <div class="col-25"></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="footerNotification selectInterest">
-        <h3>あなたの興味あるのは</h3>
-        <p><span class="select_cat"></span>ですか？</p>
-        <div class="row">
-          <div class="col-50"><a href="#" id="cancel" data-panel="left" class="button">キャンセル</a></div>
-          <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
-          <div class="col-50"><a href="#" id="sel-cat" data-panel="right" class="button active" data-view="ctc/index">選択する</a></div>
+        <div class="footerNotification selectInterest">
+          <h3>あなたの興味あるのは</h3>
+          <p><span class="select_cat"></span>ですか？</p>
+          <div class="row">
+            <div class="col-50"><a href="#" id="cancel" data-panel="left" class="button">キャンセル</a></div>
+            <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
+            <div class="col-50"><a href="#" id="sel-cat" data-panel="right" class="button active" data-view="ctc/index">選択する</a></div>
+          </div>
         </div>
       </div>
     </div>
