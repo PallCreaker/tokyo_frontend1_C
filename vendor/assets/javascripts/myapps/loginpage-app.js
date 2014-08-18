@@ -25,12 +25,15 @@ myApp.onPageInit('next', function (page) {
             $(".firstInformation").slideDown();
         }
     }
+    $(function() {
+        myApp.popup('.popup-notification');
+        $(".footerNotification").slideDown();
+    });
     
     //closeFirstInformation
     $$('#closeFirstInformation').on('click', function () {
             $(".firstInformation").slideUp();
     });
-
 
     $('div.item-inner').click(function(){
         // 片方だけでは動作しない．内部処理が連鎖をhookにしている?
