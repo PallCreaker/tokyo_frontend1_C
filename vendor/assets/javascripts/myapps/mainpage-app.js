@@ -101,7 +101,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                       // column幅設定
                 wScale = (i == panelsLength)?wDividers[maxWidthScale - 1]:wDividers[Math.floor(Math.random() * maxWidthScale)];
                 pWidth = basePanelLength * wScale;
-                maxWidthScale -= wScal;
+                maxWidthScale -= wScale;
                 while(maxHeightScale > 0) {
                     hScale = hDividers[Math.floor(Math.random() * maxHeightScale)];
                     pHeight = basePanelLength * hScale;
