@@ -4,81 +4,90 @@
 <div class="panel-overlay"></div>
 <!-- Views-->
 <div class="views">
-    <!-- Your main view, should have "view-main" class-->
-    <div class="view view-main">
-        <!-- Top Navbar-->
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="left">
-                    <a href="./" class="back link"><i class="icon icon-back-blue"></i><span>Back</span></a>
-                </div>
-                <!-- We have home navbar without left link-->
-                <div class="center sliding">
-                    あなたの興味を選択
-                </div>
-            </div>
+  <!-- Your main view, should have "view-main" class-->
+  <div class="view view-main">
+    <!-- Top Navbar-->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left">
+          <a href="./" class="back link"><i class="icon icon-back-blue"></i><span>Back</span></a>
         </div>
-        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages navbar-through toolbar-through">
-            <!-- Page, data-page contains page name-->
-            <div data-page="next" class="page">
-                <!-- Search bar -->
-                <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
-                    <div class="searchbar-input">
-                        <input type="search" placeholder="気になるワードを検索"><a href="#" class="searchbar-clear"></a>
-                    </div>
-                    <a href="#" class="searchbar-cancel">Cancel</a>
-                </form>
-
-                <!-- Search bar overlay -->
-                <div class="searchbar-overlay"></div>
-
-                <!-- Scrollable page content-->
-                <div class="page-content">
-
-                    <div class="content-block-title category">カテゴリ</div>
-                    <div class="list-block">
-                        <ul>
-                            <% @categories.each do |category| %>
-                            <% unless category['children'].count == 0 then %>
-                            <li>
-                            <% else %>
-                            <li class="cat_child">
-                            <% end %>
-                              <div class="item-content">
-                                <div class="item-inner">
-                                  <div class="item-title">
-                                    <% unless category['children'].count == 0 then %>
-                                      <a href="/logins/next/<%=category['id'] %>" class="item-link">
-                                    <% else %>
-                                      <a href="#" class="item-link" id="cat_fin" value="<%=category['id']%>">
-                                    <% end %>
-                                    <%=category['name'] %>
-                                    </a>
-                                  </div>
-                                  <div class="item-after">
-                                    <span class="check-icon"></span>
-                                    <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
-
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                            <% end %>
-                        </ul>
-                    </div>
-                    <div class="footerNotification">
-                        <h3>あなたの興味あるのは</h3>
-                        <p><span class="select_cat"></span>ですか？</p>
-                            <div class="row">
-                              <div class="col-50"><a href="#" id="cancel" data-panel="left" class="button">キャンセル</a></div>
-                              <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
-                              <div class="col-50"><a href="#" id="sel-cat" data-panel="right" class="button active" data-view="ctc/index">選択する</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- We have home navbar without left link-->
+        <div class="center sliding">
+          あなたの興味を選択
         </div>
+      </div>
     </div>
+    <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+    <div class="pages navbar-through toolbar-through">
+      <!-- Page, data-page contains page name-->
+      <div data-page="next" class="page">
+        <!-- Search bar -->
+        <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
+          <div class="searchbar-input">
+            <input type="search" placeholder="気になるワードを検索"><a href="#" class="searchbar-clear"></a>
+          </div>
+          <a href="#" class="searchbar-cancel">Cancel</a>
+        </form>
+
+        <!-- Search bar overlay -->
+        <div class="searchbar-overlay"></div>
+
+        <!-- Scrollable page content-->
+        <div class="page-content">
+
+          <div class="content-block-title category">カテゴリ</div>
+          <div class="list-block">
+            <ul>
+              <% @categories.each do |category| %>
+                <% unless category['children'].count == 0 then %>
+                  <li>
+                  <% else %>
+                  <li class="cat_child">
+                  <% end %>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">
+                        <% unless category['children'].count == 0 then %>
+                          <a href="/logins/next/<%=category['id'] %>" class="item-link">
+                          <% else %>
+                            <a href="#" class="item-link" id="cat_fin" value="<%=category['id']%>">
+                            <% end %>
+                            <%=category['name'] %>
+                          </a>
+                      </div>
+                      <div class="item-after">
+                        <span class="check-icon"></span>
+                        <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="footerNotification firstInformation">
+            <h3>お知らせ</h3>
+            <p>今あなたが学びたい、手をつけようとしている分野を選択してください</p>
+            <div class="row">
+              <div class="col-25"></div>
+              <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
+              <div class="col-50"><a href="#" id="closeFirstInformation" data-panel="right" class="button active">OK</a></div>
+              <div class="col-25"></div>
+            </div>
+          </div>
+        </div>
+        <div class="footerNotification selectInterest">
+          <h3>あなたの興味あるのは</h3>
+          <p><span class="select_cat"></span>ですか？</p>
+          <div class="row">
+            <div class="col-50"><a href="#" id="cancel" data-panel="left" class="button">キャンセル</a></div>
+            <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
+            <div class="col-50"><a href="#" id="sel-cat" data-panel="right" class="button active" data-view="ctc/index">選択する</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
