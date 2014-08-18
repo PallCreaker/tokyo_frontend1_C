@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818051931) do
+ActiveRecord::Schema.define(version: 20140818093302) do
 
   create_table "categories", force: true do |t|
     t.integer  "parent_id"
@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20140818051931) do
   end
 
   create_table "howtostarts", force: true do |t|
-    t.integer  "category_id",   null: false
-    t.integer  "author_id",     null: false
-    t.string   "first_content", null: false
-    t.string   "next_content",  null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "category_id", null: false
+    t.integer  "author_id",   null: false
+    t.string   "title",       null: false
+    t.string   "content",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "interests", force: true do |t|
