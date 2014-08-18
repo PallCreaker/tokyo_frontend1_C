@@ -113,7 +113,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                     break;
             };
 
-            console.log('leastPanelsCount:'+leastPanelsCount+' componentCount:'+componentCount)
+            // console.log('leastPanelsCount:'+leastPanelsCount+' componentCount:'+componentCount)
             leastPanelsCount -= componentCount;
 
             while(controlArray.length != 0) {
@@ -121,7 +121,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 for(var j = controlArray.pop() -1 ; j >= 0 && widthScaleArray.length > 0 && hightScaleArray.length > 0;j--) {
                     var pWidth = windowWidthOnPort * widthScaleArray.pop();
                     var pHeight = windowWidthOnPort * hightScaleArray.pop();
-                    console.log('width = '+pWidth+'/height = '+pHeight);
+                    // console.log('width = '+pWidth+'/height = '+pHeight);
                     $answerPanel = $($answerPanels[i++]);
                     $nextColumn = $nextColumn.add($answerPanel);
                     $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
