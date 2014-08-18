@@ -67,32 +67,32 @@ interests = Interest.create([
 howtostarts = Howtostart.create([
     #日本語
     {
-      author_id: 5,
+      author_id: 1,
       category_id: 10,
       title: '日本語方言',
       content: '大阪の日本語が結構、聞いてて驚きます！一番いいのは、大阪のおばちゃんと話してみることです！ヒョウ柄の人がいたら、その人が大阪のおばちゃんです！'
     },{
-      author_id: 12,
+      author_id: 2,
       category_id: 10,
       title: '純粋な日本語',
       content: 'NHKのアナウンサーの日本語を聞くとよいでしょう。あとは、高いですがアナウンススクールとかに通ってみるのも。。ｗｗ'
     },{
-      author_id: 16,
+      author_id: 3,
       category_id: 10,
       title: '早くに日本語',
       content: '日本人の彼氏・彼女を作りましょうｗ圧倒的に学びますｗ'
     },{
-      author_id: 20,
+      author_id: 4,
       category_id: 10,
       title: 'アナウンサーのような日本語',
       content: 'これは、、もう日本に長く住んでください。。絶え間ない鍛錬が必要でしょう。早口言葉もいいかもしれません'
     },{
-      author_id: 20,
+      author_id: 5,
       category_id: 10,
       title: '敬語',
       content: '敬語の〇〇な本がオススメです！http://www.amazon.co.jp/%E6%B0%97%E6%8C%81%E3%81%A1%E3%81%8C%E4%BC%9D%E3%82%8F%E3%82%8B%E6%95%AC%E8%AA%9E%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-%E5%B0%8F%E5%B4%8E-%E8%AA%A0%E4%BA%8C/dp/4342788527'
     },{
-      author_id: 20,
+      author_id: 6,
       category_id: 10,
       title: '日本語の丁寧語',
       content: 'このサイトがオススメです！http://www.jp-guide.net/businessmanner/business/keigo.html'
@@ -100,32 +100,32 @@ howtostarts = Howtostart.create([
 
     #Webプログラミング
     {
-      author_id: 5,
+      author_id: 7,
       category_id: 16,
       title: 'HPのWebプログラミング',
       content: 'まずは、ドットインストール(http://dotinstall.com)ってやつで、htmlとcssを学んびましょう！そしたら、道が開けます'
     },{
-      author_id: 12,
+      author_id: 8,
       category_id: 16,
       title: 'プログラミングでカンパニーサイトのWebプログラミング',
       content: 'html、cssって聞いてピンとくるなら、あなたは大丈夫です。wordpress実装がオススメです。もしわからない方がいるならば、この本をおすすめします（http://www.amazon.co.jp/）。'
     },{
-      author_id: 16,
+      author_id: 9,
       category_id: 16,
       title: 'お問い合わせフォームのWebプログラミング',
       content: 'これは、PHPとMySQLが必要になります。これは、重いので、http://goo.gl/2v1NI2'
     },{
-      author_id: 20,
+      author_id: 10,
       category_id: 16,
       title: 'twitterのbotのWebプログラミング',
       content: 'PHPとかrubyとか学んでください'
     },{
-      author_id: 20,
+      author_id: 11,
       category_id: 16,
       title: 'ウェブサービスのWebプログラミング',
       content: 'PHPとかrubyとか学んでください'
     },{
-      author_id: 20,
+      author_id: 12,
       category_id: 16,
       title: 'google chrome extentionのWebプログラミング',
       content: 'javascriptってやつが必要です。extentionは自分も躓きました。もし、あなたが初めてのプログラミングなら、他の事をおすすめします。'
@@ -133,36 +133,57 @@ howtostarts = Howtostart.create([
 
     #ファイナンス
     {
-      author_id: 5,
+      author_id: 13,
       category_id: 102  ,
       title: 'ファイナンスとは',
       content: 'PLやBSがまずそもそも読めますか？'
     },{
-      author_id: 12,
+      author_id: 14,
       category_id: 102,
       title: 'ファイナンスの種類',
       content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
     },{
-      author_id: 16,
+      author_id: 15,
       category_id: 102,
       title: 'ファイナンスの最初のおすすめの本',
       content: 'かなり難しいですが、起業のファイナンスがいいです！！！！！！'
     },{
-      author_id: 20,
+      author_id: 16,
       category_id: 102,
       title: 'ファイナンスの種類',
       content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
     },{
-      author_id: 20,
+      author_id: 17,
       category_id: 102,
-      title: 'ファイナンスの種類',
+      title: 'ファイナンスの掟',
       content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
     },{
-      author_id: 20,
+      author_id: 18,
       category_id: 102,
-      title: 'ファイナンスの種類',
+      title: 'ファイナンスの歴史',
       content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
     },
+  ])
+
+specials = Special.create([
+  {user_id: 1, category_id: 10},
+  {user_id: 2, category_id: 10},
+  {user_id: 3, category_id: 10},
+  {user_id: 4, category_id: 10},
+  {user_id: 5, category_id: 10},
+  {user_id: 6, category_id: 10},
+  {user_id: 7, category_id: 16},
+  {user_id: 8, category_id: 16},
+  {user_id: 9, category_id: 16},
+  {user_id: 10, category_id: 16},
+  {user_id: 11, category_id: 16},
+  {user_id: 12, category_id: 16},
+  {user_id: 13, category_id: 102},
+  {user_id: 14, category_id: 102},
+  {user_id: 15, category_id: 102},
+  {user_id: 16, category_id: 102},
+  {user_id: 17, category_id: 102},
+  {user_id: 18, category_id: 102},
   ])
 
 categories = Category.create([
