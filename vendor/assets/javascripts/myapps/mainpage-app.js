@@ -237,7 +237,6 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
     $(function() {
         myApp.popup('.popup-notification');
         $(".footerNotification").slideDown();
-        myApp.hidePreloader();
     });
 
     if (dataHolder.getCategories() == null){

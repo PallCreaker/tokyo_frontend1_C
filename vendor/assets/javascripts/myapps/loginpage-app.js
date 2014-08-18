@@ -1,5 +1,5 @@
 ﻿// Initialize your app
-var myApp = new Framework7();
+        var myApp = new Framework7();
 
 // Export selectors engine
 var $$ = Framework7.$;
@@ -15,7 +15,7 @@ var _is_alert_shown = false;
 // myApp.onPageInit('index', function (page) {
 //     $$('.navbar').css('display', 'none');
 // }
-myApp.onPageInit('next', function (page) {
+myApp.onPageInit('next', function(page) {
     $$('.preload a').on('click', function() {
         myApp.showPreloader();
     });
@@ -34,13 +34,13 @@ myApp.onPageInit('next', function (page) {
         myApp.closeModal('.popup-notification');
     });
 
-    
+
     //closeFirstInformation
-    $$('#closeFirstInformation').on('click', function () {
-            $(".firstInformation").slideUp();
+    $$('#closeFirstInformation').on('click', function() {
+        $(".firstInformation").slideUp();
     });
 
-    $('div.item-inner').click(function(){
+    $('div.item-inner').click(function() {
         // 片方だけでは動作しない．内部処理が連鎖をhookにしている?
         var a_item = $(this).find('a.item-link')[0];
         a_item.click();
@@ -50,7 +50,7 @@ myApp.onPageInit('next', function (page) {
 
     //select categroy
     var selected;
-    $('li.cat_child').click(function (){
+    $('li.cat_child').click(function() {
         // change icon
         $(".badge").css('display', 'inline');
         $(".icon-form-checkbox").remove();
@@ -64,7 +64,7 @@ myApp.onPageInit('next', function (page) {
     });
 
     //when select, load next main page
-    $$('a#sel-cat').on('click', function () {
+    $$('a#sel-cat').on('click', function() {
         // location.href = '/ctc/index';
         var scrf_token = $('meta[name="csrf-token"]').attr('content');
         console.log(selected.attr('href'));
@@ -73,7 +73,7 @@ myApp.onPageInit('next', function (page) {
             authenticity_token: scrf_token
         };
         $.post('/ctc/create', data, function(res) {
-            location.href = '/ctc/index/'+res.id;
+            location.href = '/ctc/index/' + res.id;
             console.log(data + 'success!');
         });
     });
@@ -84,11 +84,11 @@ myApp.onPageInit('next', function (page) {
         $$('.item-after .badge').css('display', 'block');
         $(".selectInterest").slideUp();
     });
-    
+
     myApp.hidePreloader();
 });
 
-$$('#facebookLogin').on('click',function(){
+$$('#facebookLogin').on('click', function() {
     myApp.showPreloader();
 });
 
