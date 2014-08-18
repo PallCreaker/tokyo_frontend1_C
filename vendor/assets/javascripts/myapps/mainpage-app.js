@@ -80,6 +80,11 @@ SubmitForm.prototype = {
     },
     getCategoryIdBox: function() {
         return this.categoryIdBox;
+    },
+    reinitilize: function() {
+        this.contentBox.val('');
+        this.titleBox.val('');
+        this.categoryBox.val('');
     }
 }
 
@@ -232,9 +237,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
             myApp.closeModal('.popup-submit');
 
             dataHolder.unsetBlur();
-            submitForm.getContentBox().val('');
-            submitForm.getTitleBox().val('');
-            submitForm.getCategoryBox().val('');
+            submitForm.reinitilize();
 
             var data = {
                 user_id: dataHolder.getUserId(),
