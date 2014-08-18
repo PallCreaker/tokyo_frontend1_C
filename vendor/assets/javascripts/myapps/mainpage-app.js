@@ -20,6 +20,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 '-webkit-filter': 'none',
                 'filter': 'none'
             });
+            thisPanel.addClass("no-blur");
             $('#firstStep').val('');
             $('#secondStep').val('');
         }     
@@ -50,8 +51,10 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
     	};
 
     	$$(".answerPanels").on('click', function() {
-        	myApp.popup('.popup-about');
-        	thisPanel = $(this);
+                if(!$(this).hasClass("no-blur")){
+                    myApp.popup('.popup-about');
+                    thisPanel = $(this);
+                }
     	});
 
     	var flatcolors = [
