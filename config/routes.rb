@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => 'logins#index'
+  root :to => 'login#index'
   # get 'ctc/index'
   # post 'ctc/index'
   match 'ctc/index/:user_id' => 'ctc#index', via: [:get]
@@ -7,15 +7,17 @@ Rails.application.routes.draw do
   # get 'ctc/' => 'ctc#index'
   match 'ctc/matching/:user_id' => 'ctc#matching', via: [:get]
   match 'ctc/matching/json/:user_id' => 'ctc#matching_json', via: [:get]
+  match 'ctc/create/read' => 'ctc#create_read', via: [:post]
+  match 'ctc/create/hts' => 'ctc#submit_hts', via: [:post]
   get 'ctc/notification' => 'ctc#notification'
   get 'ctc/question' => 'ctc#question'
   get 'ctc/questions' => 'ctc#questions'
-  get 'login/', to: 'logins#index'
-  get 'logins/index', to: 'logins#index'
-  get 'login/next/:category_id', to: 'logins#next'
-  get 'logins/next/:category_id', to: 'logins#next'
-  get 'login/last', to: 'logins#last'
-  get 'logins/last'
+  get 'login/', to: 'login#index'
+  get 'login/index', to: 'login#index'
+  get 'login/next/:category_id', to: 'login#next'
+  get 'login/next/:category_id', to: 'login#next'
+  get 'login/last', to: 'login#last'
+  get 'login/last'
   get 'ctc/fetch_interests/:user_id' => 'ctc#fetch_interests'
   get 'ctc/fetch_specialists/:user_id' => 'ctc#fetch_specialists'
   get 'ctc/dummy_category'
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
   get 'ctc/dummy_request'
   get 'ctc/dummy_special'
   get 'ctc/dummy_interest'
+  get 'ctc/get_leaves' => 'ctc#get_leaves'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

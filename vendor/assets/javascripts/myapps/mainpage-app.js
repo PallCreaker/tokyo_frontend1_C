@@ -5,34 +5,86 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
-    $$('.navbar').css('display', 'block');
-    var thisPanel = null;
-    $$('.closeFooterNotification').on('click', function() {
-        myApp.closeModal('.popup-notification');
-    });
-    $$('#answerSubmit').on('click', function() {
-        if($('#firstStep').val() == "" || $('#secondStep').val() == "" ){
-            myApp.alert('内容が入力されていません。', 'お知らせ');
-        } else {
-            myApp.closeModal('.popup-about');
-            thisPanel.css({
-                '-webkit-filter': 'none',
-                'filter': 'none'
-            });
-            thisPanel.addClass("no-blur");
-            $('#firstStep').val('');
-            $('#secondStep').val('');
-        }     
-    });
+function DataHolder() {
+    this.checkedPanel = null;
+    this.userId;
+    this.howToStartId;
+    this.categories = null; // JSON
+    this.pullContainer;
+}
 
-    $(function() {
-        myApp.popup('.popup-notification');
-        $(".footerNotification").slideDown();
-    });
+DataHolder.prototype = {
+    setPanel : function(p) {
+        this.checkedPanel = p;
+    },
+    getPanel : function() {
+        return this.checkedPanel;
+    },
+    setUserId : function(u) {
+        this.userId = u;
+    },
+    getUserId : function() {
+        return this.userId;
+    },
+    setHowToStartId : function(h) {
+        this.howToStart = h;
+    },
+    getHowToStartId : function() {
+        return this.howToStartId;
+    },
+    setBlur : function() {
+        this.checkedPanel.addClass("no-blur");
+    },
+    setCategories : function(c) {
+        this.categories = c;
+    },
+    getCategories : function() {
+        return this.categories;
+    },
+    setPullContainer : function(p) {
+        this.pullContainer = p;
+    },
+    getPullContainer : function() {
+        return this.pullContainer;
+    }
+};
 
-    var urlArray = location.href.split('/');
-    $.getJSON('/ctc/matching/json/'+urlArray[urlArray.length-1], function(json) {
+function SubmitForm() {
+    this.titleBox;
+    this.contentBox;
+    this.categoryBox;
+    this.categoryIdBox;
+}
+
+SubmitForm.prototype = {
+    setTitleBox: function(t) {
+        this.titleBox = t;
+    },
+    getTitleBox: function() {
+        return this.titleBox;
+    },
+    setContentBox: function(c) {
+        this.contentBox = c;
+    },
+    getContentBox: function() {
+        return this.contentBox;
+    },
+    setCategoryBox: function(c) {
+        this.categoryBox = c;
+    },
+    getCategoryBox: function() {
+        return this.categoryBox;
+    },
+    setCategoryIdBox: function(c) {
+        this.categoryIdBox = c;
+    },
+    getCategoryIdBox: function() {
+        return this.categoryIdBox;
+    }
+}
+
+function fetchMatching(callback) {
+    $.getJSON('/ctc/matching/json/'+dataHolder.getUserId(), function(json) {
         var jsonLength = json.length;
         for (var i = 0; i < jsonLength; i++) {
             var specialsLength = json[i].specials.length;
@@ -40,21 +92,28 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 var howLength = json[i].specials[j].how_to_start.length;
                 for (var k = 0; k < howLength; k++) {
                     var howToStart = json[i].specials[j].how_to_start[k];
-                    var content = '最初:'+
-                        howToStart.first_content+
-                        '<br>'+
-                        '次:'+
-                        howToStart.next_content;
-                    var panelHtml = '<div class="answerPanels">'+content+'</div>';
-                    $('.page-content').append(panelHtml);
+
+                    var panelHtml = '<div class="answerPanels">'+
+                        '<input type="hidden" class="how-to-id" value="'+howToStart.id+'">'+
+                        'Title:'+howToStart.title+'を学ぶには<br>'+
+                          '<div class="bluree">'+
+                            'Content:'+howToStart.content+
+                          '</div>'+
+                        '</div>';
+                    var $element = $(panelHtml);
+                    if (howToStart.is_read) {
+                        $element.find('.bluree').addClass('no-blur');
+                    }
+                    $('.page-content').append($element);
                 }
             }
         };
 
         $$(".answerPanels").on('click', function() {
-            if(!$(this).hasClass("no-blur")){
-                myApp.popup('.popup-about');
-                thisPanel = $(this);
+            if(!$(this).find('div.bluree').hasClass("no-blur")){
+                myApp.popup('.popup-submit');
+                dataHolder.setPanel($(this).find('div.bluree'));
+                dataHolder.setHowToStartId($(this).find('input[hidden]').val());
             }
         });
 
@@ -65,61 +124,142 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
             '#f39c12','#d35400','#c0392b','#7f8c8d'
         ];
 
-        // 分割配列
-        var wDividers = [1, 2, 3, 4];
-        var hDividers = [1, 2, 3];
-        var basePanelLength = Math.min($(window).width(), $(window).height()) / wDividers.length;
         var $answerPanels = $(".answerPanels");
         var panelsLength = $answerPanels.length;
+        var leastPanelsCount = panelsLength;
+        var windowWidthOnPort = Math.min($(window).width(), $(window).height());
 
-        for (var i = 0; i < panelsLength; i++) {
+        for (var i = 0; i < panelsLength; ) {
             // 基準パネルの設定
-            var $answerPanel = $($answerPanels[i++]);
-            var $answerPanelsSubset = $answerPanel;
+            var $answerPanelsSubset = $();
 
-            var wScale = (i == panelsLength)?wDividers[wDividers.length-2]:wDividers[Math.floor(Math.random() * (wDividers.length -1))];
-            var hScale = hDividers[Math.floor(Math.random() * hDividers.length)];
+            var componentCount = Math.floor(Math.random() * Math.min(4, leastPanelsCount)) + 1;
+            var widthScaleArray = new Array(0);
+            var controlArray = new Array(0);
+            var hightScaleArray = new Array(0);
 
-            if (wScale * hScale > 8) {
-                wScale--;
-                hScale--;
-            }
+            switch(componentCount) {
+                case 1:
+                    widthScaleArray.push(1);
+                    controlArray.push(1);
+                    hightScaleArray.push(0.3);
+                    break;
+                case 2:
+                    widthScaleArray.push(0.5, 0.5);
+                    controlArray.push(1, 1);
+                    hightScaleArray.push(0.75, 0.75);
+                    break;
+                case 3:
+                    widthScaleArray.push(1/3, 1/3, 1/3);
+                    controlArray.push(1,1,1);
+                    hightScaleArray.push(0.6,0.6,0.6);
+                    break;
+                case 4:
+                    widthScaleArray.push(0.5,0.5,0.5,0.5);
+                    controlArray.push(1,3);
+                    hightScaleArray.push(0.75,0.25,0.25,0.25);
+                    break;
+            };
 
-            var pWidth = basePanelLength * wScale; //最後の要素ならfillさせる
-            var pHeight = basePanelLength * hScale;
-            var maxWidthScale = wDividers.length - wScale;
-            var baseMaxHeightScale = hScale;
+            leastPanelsCount -= componentCount;
 
-            $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
-            $answerPanel.width(pWidth);
-            $answerPanel.height(pHeight);
-            // 基準パネルの設定終わり
-            while(maxWidthScale > 0) {
-                // 次のcolumnを作成する
+            while(controlArray.length != 0) {
                 var $nextColumn = $();
-                var maxHeightScale = baseMaxHeightScale;
-                      // column幅設定
-                wScale = (i == panelsLength)?wDividers[maxWidthScale - 1]:wDividers[Math.floor(Math.random() * maxWidthScale)];
-                pWidth = basePanelLength * wScale;
-                maxWidthScale -= wScale;
-                while(maxHeightScale > 0) {
-                    hScale = hDividers[Math.floor(Math.random() * maxHeightScale)];
-                    pHeight = basePanelLength * hScale;
-                    maxHeightScale -= hScale;
+                for(var j = controlArray.pop() -1 ; j >= 0 && widthScaleArray.length > 0 && hightScaleArray.length > 0;j--) {
+                    var pWidth = windowWidthOnPort * widthScaleArray.pop();
+                    var pHeight = windowWidthOnPort * hightScaleArray.pop();
                     $answerPanel = $($answerPanels[i++]);
+                    $nextColumn = $nextColumn.add($answerPanel);
                     $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
                     $answerPanel.width(pWidth);
                     $answerPanel.height(pHeight);
-                    $nextColumn = $nextColumn.add($answerPanel);
                 }
-                // column作成
                 $nextColumn.wrapAll('<div></div>');
                 $answerPanelsSubset = $answerPanelsSubset.add($nextColumn.parent());
             }
-            // row作成
+
             $answerPanelsSubset.wrapAll('<div class="row"></div>');
         };
+
+        if (!(callback === undefined)) {
+            callback();
+        }
     });
+};
+
+var dataHolder = new DataHolder();
+var submitForm = new SubmitForm();
+
+var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
+    var urlArray = location.href.split('/');
+    var userId = urlArray[urlArray.length-1];
+    dataHolder.setUserId(userId);
+    submitForm.setTitleBox($('#hts-title'));
+    submitForm.setContentBox($('#hts-content'));
+    submitForm.setCategoryBox($('#hts-category'));
+    submitForm.setCategoryIdBox($('#hts-category-id'));
+
+    $$('.navbar').css('display', 'block');
+
+    $$('.closeFooterNotification').on('click', function() {
+        myApp.closeModal('.popup-notification');
+    });
+
+    $$('#answerCancel').on('click', function() {
+        myApp.closeModal('.popup-submit');
+        submitForm.getContentBox().val('');
+        submitForm.getTitleBox().val('');
+        submitForm.getCategoryBox().val('');
+    });
+
+    $$('#answerSubmit').on('click', function() {
+        var htsContentVal = submitForm.getContentBox().val();
+        var htsTitleVal = submitForm.getTitleBox().val();
+        var htsCategoryVal = $('.special-category').val();
+
+        if(htsTitleVal == "" || htsContentVal == "" || htsCategoryVal == 0){
+            myApp.alert('内容が入力されていません。', 'お知らせ');
+        } else {
+            myApp.closeModal('.popup-submit');
+
+            dataHolder.setBlur();
+            submitForm.getContentBox().val('');
+            submitForm.getTitleBox().val('');
+            submitForm.getCategoryBox().val('');
+
+            var data = {
+                user_id: dataHolder.getUserId(),
+                hts_id: dataHolder.getHowToStartId(),
+                title: htsTitleVal,
+                content: htsContentVal,
+                category_id: htsCategoryVal
+            }
+
+            $.post('/ctc/create/hts', data).done(function(){
+                console.log('Record');
+            });
+        }
+    });
+
+    $(function() {
+        myApp.popup('.popup-notification');
+        $(".footerNotification").slideDown();
+    });
+
+    if (dataHolder.getCategories() == null){
+        $.getJSON('/ctc/get_leaves', function(json) {
+            dataHolder.setCategories(json);
+
+            var $parent = $('<select class="special-category"></select>');
+            for (var i = json.length - 1; i >= 0; i--) {
+                $parent.append($('<option value="'+json[i].id+'">'+json[i].name+'</option>'));
+            };
+            submitForm.getCategoryBox().parent().append($parent);
+            submitForm.getCategoryBox().hide();
+        });
+    }
+
+    fetchMatching();
 });
 
 mainContentsCallbacks.trigger();

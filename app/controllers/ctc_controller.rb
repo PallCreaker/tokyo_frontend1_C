@@ -1,6 +1,6 @@
 class CtcController < ApplicationController
   def index
-    @user = User.complete_select("select * from users where id = "+params[:user_id].to_s).first()
+    @user = User.complete_select("select * from users where id = "+params[:user_id].to_s, params[:user_id]).first()
   end
 
   def matching
@@ -37,6 +37,39 @@ class CtcController < ApplicationController
     else
       render :json => @user.errors
     end
+  end
+
+  def submit_hts
+    @user_id = params[:user_id] unless params[:user_id].nil?
+    @hts_id = params[:hts_id] unless params[:hts_id].nil?
+    @title = params[:title] unless params[:title].nil?
+    @category_id = params[:category_id] unless params[:category_id].nil?
+    @content = params[:content] unless params[:content].nil?
+    @read = ReadAttr.create(user_id: @user_id.to_i, hts_id: @hts_id.to_i,is_read: true)
+    @read.save
+    @hts = Howtostart.create(category_id: @category_id.to_i, author_id: @user_id.to_i, first_content: @title, next_content: @content)
+
+    if @hts.save
+      render :json => @hts
+    else
+      render :json => @hts.errors
+    end
+  end
+
+  def create_read
+    @user_id = params[:user_id] unless params[:user_id].nil?
+    @hts_id = params[:hts_id] unless params[:hts_id].nil?
+    @read = ReadAttr.create(user_id: @user_id.to_i, hts_id: @hts_id.to_i,is_read: true)
+
+    if @read.save then
+      render :json => @read
+    else
+      render :json => @read.errors
+    end
+  end
+
+  def get_leaves
+    render :json => Category.get_leaves
   end
 
   def dummy_category

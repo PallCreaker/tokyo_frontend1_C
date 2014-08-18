@@ -18,19 +18,26 @@ var _is_alert_shown = false;
 myApp.onPageInit('next', function (page) {
     $$('.navbar').css('display', 'block');
     if (page.url === '/login/next/0') {
+        $('.back').remove();
         var msg = '今あなたが学びたい、手をつけようとしている分野を選択してください';
 
         if (!_is_alert_shown) {
             _is_alert_shown = true;
-            $(".firstInformation").slideDown();
+            myApp.popup('.popup-firstInformation');
+            $(".firstInformationFooterNotification").slideDown();
+
+            //$(".firstInformation").slideDown();
         }
     }
+    $$('.closeFooterNotification').on('click', function() {
+        myApp.closeModal('.popup-notification');
+    });
+
     
     //closeFirstInformation
     $$('#closeFirstInformation').on('click', function () {
             $(".firstInformation").slideUp();
     });
-
 
     $('div.item-inner').click(function(){
         // 片方だけでは動作しない．内部処理が連鎖をhookにしている?

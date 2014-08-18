@@ -14,4 +14,8 @@ class Category < ActiveRecord::Base
       categories
     end
   end
+
+  def self.get_leaves
+    Category.connection.select('select * from categories Leaf where not exists (select * from categories Other where Leaf.id = Other.parent_id)')
+  end
 end
