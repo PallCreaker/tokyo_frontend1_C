@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # get 'ctc/' => 'ctc#index'
   match 'ctc/matching/:user_id' => 'ctc#matching', via: [:get]
   match 'ctc/matching/json/:user_id' => 'ctc#matching_json', via: [:get]
+  match 'ctc/create/read' => 'ctc#create_read', via: [:post]
+  match 'ctc/create/hts' => 'ctc#submit_hts', via: [:post]
   get 'ctc/notification' => 'ctc#notification'
   get 'ctc/question' => 'ctc#question'
   get 'ctc/questions' => 'ctc#questions'
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
   get 'ctc/dummy_request'
   get 'ctc/dummy_special'
   get 'ctc/dummy_interest'
+  get 'ctc/get_leaves' => 'ctc#get_leaves'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
