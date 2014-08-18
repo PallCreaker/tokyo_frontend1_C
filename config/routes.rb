@@ -1,4 +1,31 @@
 Rails.application.routes.draw do
+  root :to => 'logins#index'
+  # get 'ctc/index'
+  # post 'ctc/index'
+  match 'ctc/index/:user_id' => 'ctc#index', via: [:get]
+  match 'ctc/create' => 'ctc#create', via: [:post]
+  # get 'ctc/' => 'ctc#index'
+  match 'ctc/matching/:user_id' => 'ctc#matching', via: [:get]
+  match 'ctc/matching/json/:user_id' => 'ctc#matching_json', via: [:get]
+  get 'ctc/notification' => 'ctc#notification'
+  get 'ctc/question' => 'ctc#question'
+  get 'ctc/questions' => 'ctc#questions'
+  get 'login/', to: 'logins#index'
+  get 'logins/index', to: 'logins#index'
+  get 'login/next/:category_id', to: 'logins#next'
+  get 'logins/next/:category_id', to: 'logins#next'
+  get 'login/last', to: 'logins#last'
+  get 'logins/last'
+  get 'ctc/fetch_interests/:user_id' => 'ctc#fetch_interests'
+  get 'ctc/fetch_specialists/:user_id' => 'ctc#fetch_specialists'
+  get 'ctc/dummy_category'
+  get 'ctc/dummy_question'
+  get 'ctc/dummy_comment'
+  get 'ctc/dummy_user'
+  get 'ctc/dummy_request'
+  get 'ctc/dummy_special'
+  get 'ctc/dummy_interest'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

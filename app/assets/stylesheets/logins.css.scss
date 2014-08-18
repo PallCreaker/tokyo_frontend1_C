@@ -1,0 +1,118 @@
+// Place all the styles related to the Logins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// 
+@import 'common';
+
+.navbar{
+    display: none;
+    .sliding{font-family: 'Pacifico', cursive;}
+}
+.page[data-page="index"]{
+    background-image: url('/img/top_bg_blur.png');
+    background-size: 321px 568px;
+    .content-block-title{
+        font-family: 'Vollkorn', serif;
+        font-size:43px;
+        color: #fff;
+        text-align:center;
+        text-shadow: rgba(0,0,0,0.8) 0 1px 1px;
+        margin: 110px 15px 10px;
+    }
+    .content-block{
+        @include mw(245px);
+        &.login-fb{
+            bottom: 55px;
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+        a.button.fb{
+            @extend %button;
+            background: #3b72bd;
+            color: #fff;
+            img{
+                float: left;
+                width: 33px;
+            }
+            .mv-btn-txt {float: left;}
+            &:hover{
+                @include opacity(0.4);
+            }
+        }
+        .content-block-inner{
+            background: none;
+            border: none;
+            text-align: center;
+            h4{
+                text-shadow: rgba(0,0,0,0.19) 0 1px 0.1px;
+                letter-spacing: 1px;
+                color: #F9F9F9;
+                font-weight: 200;
+                margin: 0;
+            }
+            span.supporting-text {
+                display: none;
+                font-size: 12px;
+                color: #3C3C35;
+            }
+            // span.topic-text {
+            //     color: #F9F9F9;
+            //     display: block;
+            //     font-weight: 200;
+            //     margin-top: 0;
+            //     padding-top: 0;
+            //     font-size: 11px;
+            //     letter-spacing: 2px;
+            // }
+            p{
+                text-shadow: rgba(0, 0, 0, 0.29) 0 1px 0.1px;
+                letter-spacing: 1px;
+                color: #F9F9F9;
+                font-weight: 200;
+                margin: 0;
+                margin-top: 11px;
+            }
+        }
+    }
+}
+.page[data-page="next"]{
+    .content-block-title{
+        &.category{
+            background-color: #FFBD2D;
+            color: #fff;
+            margin: 0px 0px -10px;
+            padding: 6px;
+            letter-spacing: 1px;
+            font-weight: 100;
+        }
+    }
+    i.icon-form-checkbox:after{
+        border: none;
+        background: #007aff url('/img/i-form-checkbox-white.png') no-repeat;
+        background-position: 5px;
+        background-size: auto 9px;
+        content: ' ';
+        position: absolute;
+        left: 50%;
+        margin-left: -22px;
+        top: 50%;
+        margin-top: -11px;
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+        // border: 1px solid #c7c7cc;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .badge{
+        color: #B8B6B6;
+        background: #FFF;
+        border: #ddd 1px solid;
+    }
+    .list-block .item-inner {
+        border-bottom: 1px solid #ECE9E9 !important;
+    }
+}
+
