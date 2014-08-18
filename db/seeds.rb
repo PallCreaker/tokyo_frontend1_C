@@ -68,32 +68,32 @@ howtostarts = Howtostart.create([
     #日本語
     {
       author_id: 5,
-      category_id: 9,
+      category_id: 10,
       title: '日本語方言',
       content: '大阪の日本語が結構、聞いてて驚きます！一番いいのは、大阪のおばちゃんと話してみることです！ヒョウ柄の人がいたら、その人が大阪のおばちゃんです！'
     },{
       author_id: 12,
-      category_id: 9,
+      category_id: 10,
       title: '純粋な日本語',
       content: 'NHKのアナウンサーの日本語を聞くとよいでしょう。あとは、高いですがアナウンススクールとかに通ってみるのも。。ｗｗ'
     },{
       author_id: 16,
-      category_id: 9,
+      category_id: 10,
       title: '早くに日本語',
       content: '日本人の彼氏・彼女を作りましょうｗ圧倒的に学びますｗ'
     },{
       author_id: 20,
-      category_id: 9,
+      category_id: 10,
       title: 'アナウンサーのような日本語',
       content: 'これは、、もう日本に長く住んでください。。絶え間ない鍛錬が必要でしょう。早口言葉もいいかもしれません'
     },{
       author_id: 20,
-      category_id: 9,
+      category_id: 10,
       title: '敬語',
       content: '敬語の〇〇な本がオススメです！http://www.amazon.co.jp/%E6%B0%97%E6%8C%81%E3%81%A1%E3%81%8C%E4%BC%9D%E3%82%8F%E3%82%8B%E6%95%AC%E8%AA%9E%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-%E5%B0%8F%E5%B4%8E-%E8%AA%A0%E4%BA%8C/dp/4342788527'
     },{
       author_id: 20,
-      category_id: 9,
+      category_id: 10,
       title: '日本語の丁寧語',
       content: 'このサイトがオススメです！http://www.jp-guide.net/businessmanner/business/keigo.html'
     },
