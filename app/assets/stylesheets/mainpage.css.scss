@@ -29,6 +29,9 @@
             opacity: 0.85;
             padding: 5px;
             padding-bottom: 10px;
+            .content-block-title{
+                span{font-size: 11px;line-height: 24px;}
+            }
         }
     }
 }
@@ -38,7 +41,7 @@
     color: #000;
     .bluree{
         filter: blur(3px);
-        // -webkit-filter: blur(3px);      ##########################
+        -webkit-filter: blur(3px);
         &.no-blur{
             -webkit-filter: none;
             filter: none;
