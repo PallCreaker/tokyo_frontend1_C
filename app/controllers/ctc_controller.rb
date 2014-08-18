@@ -1,6 +1,6 @@
 class CtcController < ApplicationController
   def index
-    @user = User.complete_select("select * from users where id = "+params[:user_id].to_s).first()
+    @user = User.complete_select("select * from users where id = "+params[:user_id].to_s, params[:user_id]).first()
   end
 
   def matching
@@ -36,6 +36,18 @@ class CtcController < ApplicationController
         render :json => @user
     else
       render :json => @user.errors
+    end
+  end
+
+  def create_read
+    @user_id = params[:user_id] unless params[:user_id].nil?
+    @hts_id = params[:hts_id] unless params[:hts_id].nil?
+    @read = ReadAttr.create(user_id: user_id, hts_id: hts_id,is_read: true)
+
+    if @read.save then
+      render :json => @read
+    else
+      render :json => @read.errors
     end
   end
 

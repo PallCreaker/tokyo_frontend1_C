@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817182354) do
+ActiveRecord::Schema.define(version: 20140818051931) do
 
   create_table "categories", force: true do |t|
     t.integer  "parent_id"
@@ -51,6 +51,22 @@ ActiveRecord::Schema.define(version: 20140817182354) do
     t.integer  "status",      null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "read_attrs", force: true do |t|
+    t.integer  "user_id",                    null: false
+    t.integer  "hts_id",                     null: false
+    t.boolean  "is_read",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "reads", force: true do |t|
+    t.integer  "user_id",                    null: false
+    t.integer  "hts_id",                     null: false
+    t.boolean  "is_read",    default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "requests", force: true do |t|
