@@ -49,7 +49,7 @@
               <li>
                 <div class="item-content">
                   <div class="item-inner">
-                    <div class="item-title">
+                    <div class="item-title preload">
                       <a href="/login/next/<%=category['id'] %>" class="item-link">
                         <%=category['name'] %>
                       </a>
@@ -98,7 +98,7 @@
           <div class="row">
             <div class="col-50"><a href="#" id="cancel" data-panel="left" class="button">キャンセル</a></div>
             <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
-            <div class="col-50"><a href="#" id="sel-cat" data-panel="right" class="button active" data-view="ctc/index">選択する</a></div>
+            <div class="col-50"><a href="#" id="sel-cat" data-panel="right" class="button active preload" data-view="ctc/index">選択する</a></div>
           </div>
         </div>
       </div>
