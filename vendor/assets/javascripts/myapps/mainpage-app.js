@@ -236,7 +236,6 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         } else {
             myApp.closeModal('.popup-submit');
 
-            dataHolder.unsetBlur();
             submitForm.reinitilize();
 
             var data = {
@@ -251,6 +250,12 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 
             $.post('/ctc/create/hts', data).done(function(){
                 console.log('Record');
+                dataHolder.unsetBlur();
+                var title = dataHolder.getPanel().parent().find('h3').text();
+                var content = dataHolder.getPanel().parent().find('div.bluree').text();
+                myApp.popup('.popup-content');
+                $('#content-title').text(title);
+                $('#content-block').text(content);
             });
         }
     });
