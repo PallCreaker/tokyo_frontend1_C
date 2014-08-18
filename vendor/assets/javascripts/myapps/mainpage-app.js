@@ -12,26 +12,36 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         myApp.closeModal('.popup-notification');
     });
     $$('#answerSubmit').on('click', function() {
-        if($('#firstStep').val() == "" || $('#secondStep').val() == "" ){
+        var $htsContent = $('#hts-content');
+        var htsContentVal = $htsContent.val();
+        var $htsTitle = $('#hts-title');
+        var htsTitleVal = $htsTitle.val();
+        var $htsCategory = $('#hts-category');
+        var htsCategoryVal = 3;
+
+        if(htsTitleVal == "" || htsContentVal == "" ){
             myApp.alert('内容が入力されていません。', 'お知らせ');
         } else {
-            myApp.closeModal('.popup-about');
+            myApp.closeModal('.popup-submit');
             thisPanel.css({
                 '-webkit-filter': 'none',
                 'filter': 'none'
             });
             thisPanel.addClass("no-blur");
-            $('#firstStep').val('');
-            $('#secondStep').val('');
+            $htsContent.val('');
+            $htsTitle.val('');
             var urlArray = location.href.split('/');
             var userId = urlArray[urlArray.length-1];
             var htsId = thisPanel.attr('id');
             var data = {
                 user_id: userId,
-                hts_id: htsId
+                hts_id: htsId,
+                title: htsTitleVal,
+                content: htsContentVal,
+                category_id: htsCategoryVal
             }
-            $.post('/ctc/create/read', data).done(function(){
-                console.log('Record read_attr');
+            $.post('/ctc/create/hts', data).done(function(){
+                console.log('Record');
             });
         }
     });
@@ -63,7 +73,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 
         $$(".answerPanels").on('click', function() {
             if(!$(this).hasClass("no-blur")){
-                myApp.popup('.popup-about');
+                myApp.popup('.popup-submit');
                 thisPanel = $(this);
             }
         });
