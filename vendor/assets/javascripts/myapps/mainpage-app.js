@@ -115,8 +115,8 @@ function fetchMatching(callback) {
                 dataHolder.setPanel($(this).find('div.bluree'));
                 dataHolder.setHowToStartId($(this).find('input[hidden]').val());
             } else {
-                var title = 'タイトル';
-                var content = '中身';
+                var title = $(this).find('h3').text();
+                var content = $(this).find('div.bluree').text();
                 myApp.popup('.popup-content');
                 $('#content-title').text(title);
                 $('#content-block').text(content);
