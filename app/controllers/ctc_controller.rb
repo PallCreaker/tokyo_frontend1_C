@@ -32,7 +32,7 @@ class CtcController < ApplicationController
     @user = User.new(fb_name: 'fujitakazumasa')
 
     if @user.save then
-        Interest.new(user_id: @user.id, category_id: @category).save
+        Interest.new(user_id: @user.id, category_id: @category.to_i).save
         render :json => @user
     else
       render :json => @user.errors

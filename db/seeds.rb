@@ -7,6 +7,21 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 users = User.create([
+  {fb_name: 'Matsuda Junpei'},
+  {fb_name: 'Watanabe Takahiro'},
+  {fb_name: 'Fujita Kazumasa'},
+  {fb_name: 'Sumiyoshi Akira'},
+  {fb_name: 'Ohwaki Toshiyuki'},
+  {fb_name: 'Kamiya Yoshinori'},
+  {fb_name: 'Tsuge Utako'},
+  {fb_name: 'Takabayashi Haruhiko'},
+  {fb_name: 'Nakagawa Akihiro'},
+  {fb_name: 'Miyamura Hirofumi'},
+  {fb_name: 'Tamai Hisano'},
+  {fb_name: 'Inuduka Tetsunori'},
+  {fb_name: 'Inuduka Chiduko'},
+  {fb_name: 'Hoshi Yoshiko'},
+  {fb_name: 'Sugimoto Genki'},
   {fb_name: '安倍晋三'},
   {fb_name: '野田佳彦'},
   {fb_name: '菅直人'},

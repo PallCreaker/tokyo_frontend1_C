@@ -49,19 +49,13 @@
                 <div class="item-content">
                   <div class="item-inner">
                     <div class="item-title">
-                      <% unless category['children'].count == 0 then %>
                       <a href="/logins/next/<%=category['id'] %>" class="item-link">
                         <%=category['name'] %>
                       </a>
-                      <% else %>
-                      <a href="<%=category['id']%>" class="item-link" id="cat_fin">
-                        <%=category['name'] %>
-                      </a>
-                      <% end %>
                     </div>
                     <div class="item-after">
                       <span class="check-icon"></span>
-                      <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+                      <span class="badge"><%= category['children'].count %></span>
                     </div>
                   </div>
                 </div>
@@ -71,19 +65,13 @@
                 <div class="item-content">
                   <div class="item-inner">
                     <div class="item-title">
-                      <% unless category['children'].count == 0 then %>
-                      <a href="/logins/next/<%=category['id'] %>" class="item-link">
-                        <%=category['name'] %>
-                      </a>
-                      <% else %>
                       <a href="<%=category['id']%>" class="item-link" id="cat_fin">
                         <%=category['name'] %>
                       </a>
-                      <% end %>
                     </div>
                     <div class="item-after">
                       <span class="check-icon"></span>
-                      <span class="badge"><%= category['children'].count == 0 ? '+' : category['children'].count %></span>
+                      <span class="badge">+</span>
                     </div>
                   </div>
                 </div>
