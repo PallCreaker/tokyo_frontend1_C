@@ -32,7 +32,7 @@ DataHolder.prototype = {
     getHowToStartId : function() {
         return this.howToStartId;
     },
-    setBlur : function() {
+    unsetBlur : function() {
         this.checkedPanel.addClass("no-blur");
     },
     setCategories : function(c) {
@@ -231,7 +231,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         } else {
             myApp.closeModal('.popup-submit');
 
-            dataHolder.setBlur();
+            dataHolder.unsetBlur();
             submitForm.getContentBox().val('');
             submitForm.getTitleBox().val('');
             submitForm.getCategoryBox().val('');
@@ -244,7 +244,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 category_id: htsCategoryVal
             }
 
-            console.log(data);
+            // console.log(data);
 
             $.post('/ctc/create/hts', data).done(function(){
                 console.log('Record');
