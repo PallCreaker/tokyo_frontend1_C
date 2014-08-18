@@ -18,6 +18,7 @@ var _is_alert_shown = false;
 myApp.onPageInit('next', function (page) {
     $$('.navbar').css('display', 'block');
     if (page.url === '/login/next/0') {
+        $('.back').remove();
         var msg = '今あなたが学びたい、手をつけようとしている分野を選択してください';
 
         if (!_is_alert_shown) {
