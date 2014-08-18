@@ -95,9 +95,9 @@ function fetchMatching(callback) {
 
                     var panelHtml = '<div class="answerPanels">'+
                         '<input type="hidden" class="how-to-id" value="'+howToStart.id+'">'+
-                        'Title:'+howToStart.title+'を学ぶには<br>'+
+                        '<h3>'+howToStart.title+'を学ぶには</h3>'+
                           '<div class="bluree">'+
-                            'Content:'+howToStart.content+
+                          howToStart.content+
                           '</div>'+
                         '</div>';
                     var $element = $(panelHtml);
@@ -117,18 +117,20 @@ function fetchMatching(callback) {
             }
         });
 
+        // no use coloring 
         var flatcolors = [
-            '#1abc9c','#3498db','#9b59b6','#34495e',
-            '#16a085','#27ae60','#2980b9','#2c3e50',
-            '#f1c40f','#e67e22','#e74c3c','#95a5a6',
-            '#f39c12','#d35400','#c0392b','#7f8c8d'
+            // '#1abc9c','#3498db','#9b59b6','#34495e',
+            // '#16a085','#27ae60','#2980b9','#2c3e50',
+            // '#f1c40f','#e67e22','#e74c3c','#95a5a6',
+            // '#f39c12','#d35400','#c0392b','#7f8c8d'
+            '#CCFFFF','#FFFFCC',
         ];
 
         var $answerPanels = $(".answerPanels");
         var panelsLength = $answerPanels.length;
         var leastPanelsCount = panelsLength;
         var windowWidthOnPort = Math.min($(window).width(), $(window).height());
-
+        
         for (var i = 0; i < panelsLength; ) {
             // 基準パネルの設定
             var $answerPanelsSubset = $();
@@ -137,32 +139,36 @@ function fetchMatching(callback) {
             var widthScaleArray = new Array(0);
             var controlArray = new Array(0);
             var hightScaleArray = new Array(0);
+            var componentCountClass;
 
             switch(componentCount) {
                 case 1:
                     widthScaleArray.push(1);
                     controlArray.push(1);
                     hightScaleArray.push(0.3);
+                    componentCountClass = '';
                     break;
                 case 2:
                     widthScaleArray.push(0.5, 0.5);
                     controlArray.push(1, 1);
                     hightScaleArray.push(0.75, 0.75);
+                    componentCountClass = '';
                     break;
                 case 3:
                     widthScaleArray.push(1/3, 1/3, 1/3);
                     controlArray.push(1,1,1);
                     hightScaleArray.push(0.6,0.6,0.6);
+                    componentCountClass = '';
                     break;
                 case 4:
                     widthScaleArray.push(0.5,0.5,0.5,0.5);
                     controlArray.push(1,3);
                     hightScaleArray.push(0.75,0.25,0.25,0.25);
+                    componentCountClass = 'col-4';
                     break;
             };
 
             leastPanelsCount -= componentCount;
-
             while(controlArray.length != 0) {
                 var $nextColumn = $();
                 for(var j = controlArray.pop() -1 ; j >= 0 && widthScaleArray.length > 0 && hightScaleArray.length > 0;j--) {
@@ -171,14 +177,14 @@ function fetchMatching(callback) {
                     $answerPanel = $($answerPanels[i++]);
                     $nextColumn = $nextColumn.add($answerPanel);
                     $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
-                    $answerPanel.width(pWidth);
+                    $answerPanel.width(pWidth - 20);
                     $answerPanel.height(pHeight);
                 }
                 $nextColumn.wrapAll('<div></div>');
                 $answerPanelsSubset = $answerPanelsSubset.add($nextColumn.parent());
             }
 
-            $answerPanelsSubset.wrapAll('<div class="row"></div>');
+            $answerPanelsSubset.wrapAll('<div class="row ' + componentCountClass + '"></div>');
         };
 
         if (!(callback === undefined)) {
