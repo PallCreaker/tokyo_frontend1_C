@@ -67,7 +67,18 @@
                             <% end %>
                         </ul>
                     </div>
-                    <div class="footerNotification">
+                    <div class="footerNotification firstInformation">
+                        <h3>お知らせ</h3>
+                        <p>今あなたが学びたい、手をつけようとしている分野を選択してください</p>
+                            <div class="row">
+                              <div class="col-25"></div>
+                              <!-- このままだと画面遷移無しのAsnc loadになっちゃうから，このaだけイベントを付けてlocation.hrefで強制遷移 (loginpage-app.js参照) -->
+                              <div class="col-50"><a href="#" id="closeFirstInformation" data-panel="right" class="button active">OK</a></div>
+                              <div class="col-25"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footerNotification selectInterest">
                         <h3>あなたの興味あるのは</h3>
                         <p><span class="select_cat"></span>ですか？</p>
                             <div class="row">

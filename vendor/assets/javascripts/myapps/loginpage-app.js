@@ -22,9 +22,16 @@ myApp.onPageInit('next', function (page) {
 
         if (!_is_alert_shown) {
             _is_alert_shown = true;
-            myApp.alert(msg, 'お知らせ');
+            //myApp.alert(msg, 'お知らせ');
+            $(".firstInformation").slideDown();
         }
     }
+    
+    //closeFirstInformation
+    $$('#closeFirstInformation').on('click', function () {
+            $(".firstInformation").slideUp();
+    });
+
 
     $('div.item-inner').click(function(){
         // 片方だけでは動作しない．内部処理が連鎖をhookにしている?
@@ -45,18 +52,18 @@ myApp.onPageInit('next', function (page) {
         // input text
         selected = $(this).find('a#cat_fin');
 
-        $(".footerNotification p span.select_cat").text(selected.text());
-        $(".footerNotification").slideDown();
+        $(".selectInterest p span.select_cat").text(selected.text());
+        $(".selectInterest").slideDown();
     });
 
     //when select, load next main page
     $$('a#sel-cat').on('click', function () {
         // location.href = '/ctc/index';
-        var metaTags = document.getElementsByTagName('meta');
+        //var metaTags = document.getElementsByTagName('meta');
         var scrf_token = $('meta[name="csrf-token"]').attr('content');
         var data = {
             category: selected.val(),
-            authenticity_token: scrf_token,
+            authenticity_token: scrf_token
         };
         $.post('/ctc/create', data).done(function( responseText ) {
             location.href = '/ctc/index/3';
@@ -68,7 +75,7 @@ myApp.onPageInit('next', function (page) {
     $$('a#cancel').on('click', function() {
         $$('.item-after #check-badge').remove();
         $$('.item-after .badge').css('display', 'block');
-        $(".footerNotification").slideUp();
+        $(".selectInterest").slideUp();
     });
 });
 
