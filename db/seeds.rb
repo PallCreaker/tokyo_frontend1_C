@@ -108,12 +108,12 @@ howtostarts = Howtostart.create([
       author_id: 12,
       category_id: 16,
       title: 'プログラミングでカンパニーサイトのWebプログラミング',
-      content: 'html、cssって聞いてピンとくるなら、あなたは大丈夫です。wordpress実装がオススメです。もしわからない方がいるならば、この本をおすすめします（http://www.amazon.co.jp/HTML-XHTML-%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%B7%E3%83%BC%E3%83%88%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B3%E3%83%96%E3%83%83%E3%82%AF%E2%80%95%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%83%90%E3%82%A4%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%BD%A2%E5%BC%8F%E3%81%A7%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B-%E3%82%A8%E3%83%93%E3%82%B9%E3%82%B3%E3%83%A0/dp/4883375412/ref=pd_bxgy_fb_img_y）。'
+      content: 'html、cssって聞いてピンとくるなら、あなたは大丈夫です。wordpress実装がオススメです。もしわからない方がいるならば、この本をおすすめします（http://www.amazon.co.jp/）。'
     },{
       author_id: 16,
       category_id: 16,
       title: 'お問い合わせフォームのWebプログラミング',
-      content: 'これは、PHPとMySQLが必要になります。これは、重いので、http://www.amazon.co.jp/%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E4%BA%BA%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93PHP-MySQL%E5%85%A5%E9%96%80-%E7%B4%99%E8%B0%B7-%E6%AD%8C%E5%AF%BF%E5%BD%A6/dp/4798006696/ref=sr_1_cc_1?s=aps&ie=UTF8&qid=1408353057&sr=1-1-catcorr&keywords=PHP%E3%80%80mysql+%E3%80%80%E5%85%A5%E9%96%80'
+      content: 'これは、PHPとMySQLが必要になります。これは、重いので、http://goo.gl/2v1NI2'
     },{
       author_id: 20,
       category_id: 16,
