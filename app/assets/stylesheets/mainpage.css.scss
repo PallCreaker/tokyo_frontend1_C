@@ -33,8 +33,9 @@
                 span{font-size: 11px;line-height: 24px;}
             }
             .button.button-cancel {
-                border-color: #FF574D;
+                // border-color: #FF574D;
                 background: #ED766F;
+                border: none;
             }
         }
     }
@@ -50,6 +51,13 @@
             -webkit-filter: none;
             filter: none;
         }
+    }
+}
+#answerSubmit{
+    &.button.button-submit {
+        border-color: #4cd964;
+        background: #4cd964;
+        border: #ACFDA7 1px solid;
     }
 }
 
