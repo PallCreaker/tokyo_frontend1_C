@@ -22,21 +22,28 @@
                 color: #FFFFFF;
             }
         }
-        #requireAnswer{
+        #requireAnswer,#insideContent{
             margin-top:100px;
             background-color: #2c3e50;
             color: white;
             opacity: 0.85;
             padding: 5px;
             padding-bottom: 10px;
+            .content-block-title{
+                span{font-size: 11px;line-height: 24px;}
+            }
+            .button.button-cancel {
+                // border-color: #FF574D;
+                background: #ED766F;
+                border: none;
+            }
         }
     }
 }
 
 .answerPanels{
-    background-color: #e74c3c;
     position: relative;
-    color:white;
+    color: #000;
     .bluree{
         filter: blur(3px);
         -webkit-filter: blur(3px);
@@ -46,7 +53,64 @@
         }
     }
 }
+#answerSubmit{
+    &.button.button-submit {
+        border-color: #4cd964;
+        background: #4cd964;
+        border: #ACFDA7 1px solid;
+    }
+}
+
+.colorPanel{
+    background-color: #F5FDFF;
+}
 
 .list-block{
     color: black;
+}
+.page[data-page="main"]{
+    .page-content{background-color: #fff;}
+    .row {
+        h3{
+            font-size: 12px;
+            font-weight: 500;
+            color: #2D2D2D;
+            text-shadow: rgba(0,0,0,0.21) 0 1px 1px;
+            margin: 3px 0;
+        }
+        border-bottom: 1.5px solid #ddd;
+        > div {
+            border-right: 1.5px solid #ddd;
+            .answerPanels{
+                padding: 10px;
+                word-wrap: break-word;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                .bluree{font-size: 78%}
+            }
+        }
+        &.col-4{
+            div:first-child{
+                .answerPanels{border-bottom: 1.5px solid #ddd;}
+            }
+        }
+    }
+}
+#inside-popup-content{
+    border-radius: 10px;
+    margin-top:40px;
+    min-height:400px;
+    margin:10px;
+    padding:10px;
+    background-color:white;
+    #content-block{
+        min-height:300px;
+        word-wrap: break-word;
+    }
+    .button.button-cancel {
+        border-color: #FF574D;
+        background: #F9756E;
+        color: #ddd;
+        font-weight: 500;
+    }
 }

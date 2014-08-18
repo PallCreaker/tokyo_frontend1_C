@@ -63,7 +63,7 @@
     <!-- About Popup -->
     <div class="popup popup-submit">
       <div id="requireAnswer">
-        <div class="content-block-title">先にあなたの経験を教えて下さい</div>
+        <div class="content-block-title">経験のある分野についてを教えて下さい<br><span>答えていただくとモザイクが消えます</span></div>
         <div class="list-block inset">
 
           <ul>
@@ -111,12 +111,19 @@
     <!-- notification Popup -->
     <div class="popup popup-notification">
       <div class="footerNotification">
-        <h3>あなたの興味のある<%= @user[:interests][0][:category]['name'] %>が<br>モザイクになっています</h3>
+        <h3 class="select"><%= @user[:interests][0][:category]['name'] %>に関しての回答が<br>モザイクになっています</h3>
         <p>どれかモザイクをタップしてください</p>
         <a href="#" data-panel="center" class="button active closeFooterNotification">OK</a>
       </div>
     </div>
-
+    
+    <div class="popup popup-content">
+      <div id="inside-popup-content">
+        <h3 class="content-block-title" id="content-title"></h3>
+        <div class="content-block" id="content-block"></div>
+        <p><a href="#" id="contentClose" class="button button-cancel close">閉じる</a></p>
+      </div>
+    </div>
     <script type="text/javascript" src="/assets/fw7/framework7.min.js"></script>
     <script type="text/javascript" src="/assets/fw7/framework7.3dpanels.js"></script>
     <script type="text/javascript" src="/assets/myapps/mainpage-app.js"></script>
