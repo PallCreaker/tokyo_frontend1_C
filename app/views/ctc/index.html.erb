@@ -10,6 +10,26 @@
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
+    <div class="panel panel-right panel-reveal">
+      <div class="list-block">
+        <ul>
+          <li>
+            <a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">Profile</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="item-content item-link">
+              <div class="item-inner">
+                <div class="item-title">About</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="views">
       <!-- Main view has "view-main" class-->
       <div class="view view-main">
@@ -17,9 +37,6 @@
         <div class="navbar">
           <div class="navbar-inner">
             <div class="left">
-              <a href="#" class="link icon-only open-panel">
-                +
-              </a>
             </div>
             <div class="center sliding">
               <%= @user[:interests][0][:category]['name'] %>を初めて学ぶには
@@ -100,6 +117,7 @@
     </div>
 
     <script type="text/javascript" src="/assets/fw7/framework7.min.js"></script>
+    <script type="text/javascript" src="/assets/fw7/framework7.3dpanels.js"></script>
     <script type="text/javascript" src="/assets/myapps/mainpage-app.js"></script>
   </body>
 </html>
