@@ -22,7 +22,6 @@ myApp.onPageInit('next', function (page) {
 
         if (!_is_alert_shown) {
             _is_alert_shown = true;
-            //myApp.alert(msg, 'お知らせ');
             $(".firstInformation").slideDown();
         }
     }
@@ -59,7 +58,6 @@ myApp.onPageInit('next', function (page) {
     //when select, load next main page
     $$('a#sel-cat').on('click', function () {
         // location.href = '/ctc/index';
-        //var metaTags = document.getElementsByTagName('meta');
         var scrf_token = $('meta[name="csrf-token"]').attr('content');
         var data = {
             category: selected.val(),
