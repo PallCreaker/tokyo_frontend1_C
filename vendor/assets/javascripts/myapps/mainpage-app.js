@@ -95,9 +95,9 @@ function fetchMatching(callback) {
 
                     var panelHtml = '<div class="answerPanels">'+
                         '<input type="hidden" class="how-to-id" value="'+howToStart.id+'">'+
-                        'Title:'+howToStart.first_content+'<br>'+
+                        'Title:'+howToStart.title+'を学ぶには<br>'+
                           '<div class="bluree">'+
-                            'Content:'+howToStart.next_content+
+                            'Content:'+howToStart.content+
                           '</div>'+
                         '</div>';
                     var $element = $(panelHtml);
@@ -203,6 +203,13 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 
     $$('.closeFooterNotification').on('click', function() {
         myApp.closeModal('.popup-notification');
+    });
+
+    $$('#answerCancel').on('click', function() {
+        myApp.closeModal('.popup-submit');
+        submitForm.getContentBox().val('');
+        submitForm.getTitleBox().val('');
+        submitForm.getCategoryBox().val('');
     });
 
     $$('#answerSubmit').on('click', function() {
