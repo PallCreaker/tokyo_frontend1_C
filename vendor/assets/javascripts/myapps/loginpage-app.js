@@ -28,8 +28,6 @@ myApp.onPageInit('next', function (page) {
             _is_alert_shown = true;
             myApp.popup('.popup-firstInformation');
             $(".firstInformationFooterNotification").slideDown();
-
-            //$(".firstInformation").slideDown();
         }
     }
     $$('.closeFooterNotification').on('click', function() {
@@ -87,7 +85,11 @@ myApp.onPageInit('next', function (page) {
         $(".selectInterest").slideUp();
     });
     
-        myApp.hidePreloader();
+    myApp.hidePreloader();
+});
+
+$$('#facebookLogin').on('click',function(){
+    myApp.showPreloader();
 });
 
 // myApp.onPageInit('last', function (page) {
