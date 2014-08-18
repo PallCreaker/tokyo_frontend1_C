@@ -47,7 +47,7 @@ class CtcController < ApplicationController
     @content = params[:content] unless params[:content].nil?
     @read = ReadAttr.create(user_id: @user_id.to_i, hts_id: @hts_id.to_i,is_read: true)
     @read.save
-    @hts = Howtostart.create(category_id: @category_id.to_i, author_id: @user_id.to_i, first_content: @title, next_content: @content)
+    @hts = Howtostart.create(category_id: @category_id.to_i, author_id: @user_id.to_i, title: @title, content: @content)
 
     if @hts.save
       render :json => @hts
