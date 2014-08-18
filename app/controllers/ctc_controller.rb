@@ -37,14 +37,6 @@ class CtcController < ApplicationController
     else
       render :json => @user.errors
     end
-
-    # if @user.save
-      # format.html { redirect_to @user, notice: 'Product was successfully created.' }
-      # format.json { render :show, status: :created, location: @user }
-    # else
-      # format.html { render :new }
-      # format.json { render json: @user.errors, status: :unprocessable_entity }
-    # end
   end
 
   def dummy_category
