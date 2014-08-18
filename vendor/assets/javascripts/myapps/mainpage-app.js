@@ -28,7 +28,8 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         $(".footerNotification").slideDown();
     });
 
-    $.getJSON('/ctc/matching/json/3', function(json) {
+    var urlArray = location.href.split('/');
+    $.getJSON('/ctc/matching/json/'+urlArray[urlArray.length-1], function(json) {
     	var jsonLength = json.length;
     	for (var i = 0; i < jsonLength; i++) {
     		var specialsLength = json[i].specials.length;
@@ -103,7 +104,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 			        pHeight = basePanelLength * hScale;
 			        maxHeightScale -= hScale;
 			        $answerPanel = $($answerPanels[i++]);
-		    		$answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
+		    	    $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
 					$answerPanel.width(pWidth);
 					$answerPanel.height(pHeight);
 					$nextColumn = $nextColumn.add($answerPanel);

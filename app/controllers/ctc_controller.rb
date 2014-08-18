@@ -27,15 +27,15 @@ class CtcController < ApplicationController
   end
 
   def create
-    render :nothing => true
+    # render :nothing => true
     @category = params[:category] unless params[:category].nil?
-    @user = User.new(interest: @category, fb_name: 'fujitakazumasa')
-    if @user.save
-      # format.html { redirect_to @user, notice: 'Product was successfully created.' }
-      # format.json { render :show, status: :created, location: @user }
+    @user = User.new(fb_name: 'fujitakazumasa')
+
+    if @user.save then
+        Interest.new(user_id: @user.id, category_id: @category).save
+        render :json => @user
     else
-      # format.html { render :new }
-      # format.json { render json: @user.errors, status: :unprocessable_entity }
+      render :json => @user.errors
     end
   end
 

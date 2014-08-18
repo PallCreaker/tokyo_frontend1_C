@@ -60,11 +60,11 @@ myApp.onPageInit('next', function (page) {
         // location.href = '/ctc/index';
         var scrf_token = $('meta[name="csrf-token"]').attr('content');
         var data = {
-            category: selected.val(),
+            category: selected.attr('href'),
             authenticity_token: scrf_token
         };
-        $.post('/ctc/create', data).done(function( responseText ) {
-            location.href = '/ctc/index/3';
+        $.post('/ctc/create', data, function(res) {
+            location.href = '/ctc/index/'+res.id;
             console.log(data + 'success!');
         });
     });
