@@ -28,7 +28,8 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         $(".footerNotification").slideDown();
     });
 
-    $.getJSON('/ctc/matching/json/3', function(json) {
+    var urlArray = location.href.split('/');
+    $.getJSON('/ctc/matching/json/'+urlArray[urlArray.length-1], function(json) {
     	var jsonLength = json.length;
     	for (var i = 0; i < jsonLength; i++) {
     		var specialsLength = json[i].specials.length;
