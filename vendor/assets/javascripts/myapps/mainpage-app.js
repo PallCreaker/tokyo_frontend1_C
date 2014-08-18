@@ -5,41 +5,110 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+function DataHolder() {
+    this.checkedPanel = null;
+    this.userId;
+    this.howToStartId;
+    this.selectCategoryId;
+}
+
+DataHolder.prototype = {
+    setPanel : function(p) {
+        this.checkedPanel = p;
+    },
+    getPanel : function() {
+        return this.checkedPanel;
+    },
+    setUserId : function(u) {
+        this.userId = u;
+    },
+    getUserId : function() {
+        return this.userId;
+    },
+    setHowToStartId : function(h) {
+        this.howToStart = h;
+    },
+    getHowToStartId : function() {
+        return this.howToStartId;
+    },
+    setSelectedCategoryId : function(s) {
+        this.selectCategoryId = s;
+    },
+    getSelectedCategoryId : function() {
+        return this.selectCategoryId;
+    },
+    setBlur : function() {
+        this.checkedPanel.addClass("no-blur");
+    }
+};
+
+function SubmitForm() {
+    this.titleBox;
+    this.contentBox;
+    this.categoryBox;
+}
+
+SubmitForm.prototype = {
+    setTitleBox: function(t) {
+        this.titleBox = t;
+    },
+    getTitleBox: function() {
+        return this.titleBox;
+    },
+    setContentBox: function(c) {
+        this.contentBox = c;
+    },
+    getContentBox: function() {
+        return this.contentBox;
+    },
+    setCategoryBox: function(c) {
+        this.categoryBox = c;
+    },
+    getCategoryBox: function() {
+        return this.categoryBox;
+    }
+}
+
+var dataHolder = new DataHolder();
+var submitForm = new SubmitForm();
+
 var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
+    var urlArray = location.href.split('/');
+    var userId = urlArray[urlArray.length-1];
+    dataHolder.setUserId(userId);
+    submitForm.setTitleBox($('#hts-title'));
+    submitForm.setContentBox($('#hts-content'));
+    submitForm.setCategoryBox($('#hts-category'));
+
     $$('.navbar').css('display', 'block');
-    var thisPanel = null;
+
     $$('.closeFooterNotification').on('click', function() {
         myApp.closeModal('.popup-notification');
     });
+
     $$('#answerSubmit').on('click', function() {
-        var $htsContent = $('#hts-content');
-        var htsContentVal = $htsContent.val();
-        var $htsTitle = $('#hts-title');
-        var htsTitleVal = $htsTitle.val();
-        var $htsCategory = $('#hts-category');
+        var htsContentVal = submitForm.getContentBox().val();
+        var htsTitleVal = submitForm.getTitleBox().val();
         var htsCategoryVal = 3;
 
         if(htsTitleVal == "" || htsContentVal == "" ){
             myApp.alert('内容が入力されていません。', 'お知らせ');
         } else {
             myApp.closeModal('.popup-submit');
-            thisPanel.css({
-                '-webkit-filter': 'none',
-                'filter': 'none'
-            });
-            thisPanel.addClass("no-blur");
-            $htsContent.val('');
-            $htsTitle.val('');
-            var urlArray = location.href.split('/');
-            var userId = urlArray[urlArray.length-1];
-            var htsId = thisPanel.attr('id');
+
+            dataHolder.setBlur();
+            submitForm.getContentBox().val('');
+            submitForm.getTitleBox().val('');
+            submitForm.getCategoryBox().val('');
+
             var data = {
-                user_id: userId,
-                hts_id: htsId,
+                user_id: dataHolder.getUserId(),
+                hts_id: dataHolder.getHowToStartId(),
                 title: htsTitleVal,
                 content: htsContentVal,
                 category_id: htsCategoryVal
             }
+
             $.post('/ctc/create/hts', data).done(function(){
                 console.log('Record');
             });
@@ -51,8 +120,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         $(".footerNotification").slideDown();
     });
 
-    var urlArray = location.href.split('/');
-    $.getJSON('/ctc/matching/json/'+urlArray[urlArray.length-1], function(json) {
+    $.getJSON('/ctc/matching/json/'+dataHolder.getUserId(), function(json) {
         var jsonLength = json.length;
         for (var i = 0; i < jsonLength; i++) {
             var specialsLength = json[i].specials.length;
@@ -60,21 +128,28 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 var howLength = json[i].specials[j].how_to_start.length;
                 for (var k = 0; k < howLength; k++) {
                     var howToStart = json[i].specials[j].how_to_start[k];
-                    var content = '最初:'+
-                        howToStart.first_content+
-                        '<br>'+
-                        '次:'+
-                        howToStart.next_content;
-                    var panelHtml = '<div class="answerPanels" id="'+howToStart.id+'">'+content+'</div>';
-                    $('.page-content').append(panelHtml);
+
+                    var panelHtml = '<div class="answerPanels">'+
+                        '<input type="hidden" class="how-to-id" value="'+howToStart.id+'">'+
+                        'Title:'+howToStart.first_content+'<br>'+
+                          '<div class="bluree">'+
+                            'Content:'+howToStart.next_content+
+                          '</div>'+
+                        '</div>';
+                    var $element = $(panelHtml);
+                    if (howToStart.is_read) {
+                        $element.find('.bluree').addClass('no-blur');
+                    }
+                    $('.page-content').append($element);
                 }
             }
         };
 
         $$(".answerPanels").on('click', function() {
-            if(!$(this).hasClass("no-blur")){
+            if(!$(this).find('div.bluree').hasClass("no-blur")){
                 myApp.popup('.popup-submit');
-                thisPanel = $(this);
+                dataHolder.setPanel($(this).find('div.bluree'));
+                dataHolder.setHowToStartId($(this).find('input[hidden]').val());
             }
         });
 
@@ -85,7 +160,6 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
             '#f39c12','#d35400','#c0392b','#7f8c8d'
         ];
 
-        // 分割配列
         var $answerPanels = $(".answerPanels");
         var panelsLength = $answerPanels.length;
         var leastPanelsCount = panelsLength;
