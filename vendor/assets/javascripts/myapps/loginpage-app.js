@@ -44,7 +44,7 @@ myApp.onPageInit('next', function (page) {
         $(this).find('.item-after .check-icon').append('<i class="icon icon-form-checkbox" id="check-badge"></i>');
         // input text
         selected = $(this).find('a#cat_fin');
-        console.log(cat);
+
         $(".footerNotification p span.select_cat").text(selected.text());
         $(".footerNotification").slideDown();
     });
