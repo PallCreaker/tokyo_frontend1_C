@@ -16,6 +16,9 @@ var _is_alert_shown = false;
 //     $$('.navbar').css('display', 'none');
 // }
 myApp.onPageInit('next', function (page) {
+    $$('.preload a').on('click', function() {
+        myApp.showPreloader();
+    });
     $$('.navbar').css('display', 'block');
     if (page.url === '/login/next/0') {
         $('.back').remove();
@@ -83,6 +86,8 @@ myApp.onPageInit('next', function (page) {
         $$('.item-after .badge').css('display', 'block');
         $(".selectInterest").slideUp();
     });
+    
+        myApp.hidePreloader();
 });
 
 // myApp.onPageInit('last', function (page) {
