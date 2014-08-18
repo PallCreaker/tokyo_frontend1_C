@@ -65,27 +65,104 @@ interests = Interest.create([
   ])
 
 howtostarts = Howtostart.create([
+    #日本語
     {
       author_id: 5,
-      category_id: 21,
-      first_content: '食べます1',
-      next_content: 'また食べます1'
+      category_id: 9,
+      title: '日本語方言',
+      content: '大阪の日本語が結構、聞いてて驚きます！一番いいのは、大阪のおばちゃんと話してみることです！ヒョウ柄の人がいたら、その人が大阪のおばちゃんです！'
     },{
       author_id: 12,
-      category_id: 21,
-      first_content: '食べます2',
-      next_content: 'また食べます2'
+      category_id: 9,
+      title: '純粋な日本語',
+      content: 'NHKのアナウンサーの日本語を聞くとよいでしょう。あとは、高いですがアナウンススクールとかに通ってみるのも。。ｗｗ'
     },{
       author_id: 16,
-      category_id: 21,
-      first_content: '食べます3',
-      next_content: 'また食べます3'
+      category_id: 9,
+      title: '早くに日本語',
+      content: '日本人の彼氏・彼女を作りましょうｗ圧倒的に学びますｗ'
     },{
       author_id: 20,
-      category_id: 21,
-      first_content: '食べます4',
-      next_content: 'また食べます4'
-    }
+      category_id: 9,
+      title: 'アナウンサーのような日本語',
+      content: 'これは、、もう日本に長く住んでください。。絶え間ない鍛錬が必要でしょう。早口言葉もいいかもしれません'
+    },{
+      author_id: 20,
+      category_id: 9,
+      title: '敬語',
+      content: '敬語の〇〇な本がオススメです！http://www.amazon.co.jp/%E6%B0%97%E6%8C%81%E3%81%A1%E3%81%8C%E4%BC%9D%E3%82%8F%E3%82%8B%E6%95%AC%E8%AA%9E%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-%E5%B0%8F%E5%B4%8E-%E8%AA%A0%E4%BA%8C/dp/4342788527'
+    },{
+      author_id: 20,
+      category_id: 9,
+      title: '日本語の丁寧語',
+      content: 'このサイトがオススメです！http://www.jp-guide.net/businessmanner/business/keigo.html'
+    },
+
+    #Webプログラミング
+    {
+      author_id: 5,
+      category_id: 16,
+      title: 'HPのWebプログラミング',
+      content: 'まずは、ドットインストール(http://dotinstall.com)ってやつで、htmlとcssを学んびましょう！そしたら、道が開けます'
+    },{
+      author_id: 12,
+      category_id: 16,
+      title: 'プログラミングでカンパニーサイトのWebプログラミング',
+      content: 'html、cssって聞いてピンとくるなら、あなたは大丈夫です。wordpress実装がオススメです。もしわからない方がいるならば、この本をおすすめします（http://www.amazon.co.jp/HTML-XHTML-%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%B7%E3%83%BC%E3%83%88%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B3%E3%83%96%E3%83%83%E3%82%AF%E2%80%95%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%83%90%E3%82%A4%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E5%BD%A2%E5%BC%8F%E3%81%A7%E3%83%9E%E3%82%B9%E3%82%BF%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B-%E3%82%A8%E3%83%93%E3%82%B9%E3%82%B3%E3%83%A0/dp/4883375412/ref=pd_bxgy_fb_img_y）。'
+    },{
+      author_id: 16,
+      category_id: 16,
+      title: 'お問い合わせフォームのWebプログラミング',
+      content: 'これは、PHPとMySQLが必要になります。これは、重いので、http://www.amazon.co.jp/%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E4%BA%BA%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AE%E3%81%8B%E3%82%93%E3%81%9F%E3%82%93PHP-MySQL%E5%85%A5%E9%96%80-%E7%B4%99%E8%B0%B7-%E6%AD%8C%E5%AF%BF%E5%BD%A6/dp/4798006696/ref=sr_1_cc_1?s=aps&ie=UTF8&qid=1408353057&sr=1-1-catcorr&keywords=PHP%E3%80%80mysql+%E3%80%80%E5%85%A5%E9%96%80'
+    },{
+      author_id: 20,
+      category_id: 16,
+      title: 'twitterのbotのWebプログラミング',
+      content: 'PHPとかrubyとか学んでください'
+    },{
+      author_id: 20,
+      category_id: 16,
+      title: 'ウェブサービスのWebプログラミング',
+      content: 'PHPとかrubyとか学んでください'
+    },{
+      author_id: 20,
+      category_id: 16,
+      title: 'google chrome extentionのWebプログラミング',
+      content: 'javascriptってやつが必要です。extentionは自分も躓きました。もし、あなたが初めてのプログラミングなら、他の事をおすすめします。'
+    },
+
+    #ファイナンス
+    {
+      author_id: 5,
+      category_id: 102  ,
+      title: 'ファイナンスとは',
+      content: 'PLやBSがまずそもそも読めますか？'
+    },{
+      author_id: 12,
+      category_id: 102,
+      title: 'ファイナンスの種類',
+      content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
+    },{
+      author_id: 16,
+      category_id: 102,
+      title: 'ファイナンスの最初のおすすめの本',
+      content: 'かなり難しいですが、起業のファイナンスがいいです！！！！！！'
+    },{
+      author_id: 20,
+      category_id: 102,
+      title: 'ファイナンスの種類',
+      content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
+    },{
+      author_id: 20,
+      category_id: 102,
+      title: 'ファイナンスの種類',
+      content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
+    },{
+      author_id: 20,
+      category_id: 102,
+      title: 'ファイナンスの種類',
+      content: 'エクイティファイナンスとデットファイナンスがあり。。。。。それぞれ。。。。。。。。。。'
+    },
   ])
 
 categories = Category.create([
@@ -97,7 +174,7 @@ categories = Category.create([
   {name: '資格'},
   {name: '音楽'},
   {name: '留学'},
-  {name: 'その他'}, # 大カテゴリ終わり 13
+  {name: 'その他'}, # 大カテゴリ終わり
 
   {name: '日本語', parent_id: 1}, # 始 parent=語学
   {name: 'フランス語', parent_id: 1}, # 始
@@ -114,7 +191,7 @@ categories = Category.create([
   {name: '物理学', parent_id: 3}, # 始 parent=アカデミック
   {name: '化学', parent_id: 3},
   {name: '地学', parent_id: 3},
-  {name: '制御工学', parent_id: 3},
+  {name: '情報工学', parent_id: 3},
   {name: '宇宙工学', parent_id: 3},
   {name: '社会学', parent_id: 3},
   {name: '心理学', parent_id: 3},
