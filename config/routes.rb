@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'ctc/dummy_request'
   get 'ctc/dummy_special'
   get 'ctc/dummy_interest'
+  get 'ctc/get_leaves' => 'ctc#get_leaves'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

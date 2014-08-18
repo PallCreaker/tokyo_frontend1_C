@@ -68,6 +68,10 @@ class CtcController < ApplicationController
     end
   end
 
+  def get_leaves
+    render :json => Category.get_leaves
+  end
+
   def dummy_category
     render :json => Category.select('*')
   end

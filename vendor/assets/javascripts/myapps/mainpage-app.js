@@ -9,7 +9,8 @@ function DataHolder() {
     this.checkedPanel = null;
     this.userId;
     this.howToStartId;
-    this.selectCategoryId;
+    this.categories = null; // JSON
+    this.pullContainer;
 }
 
 DataHolder.prototype = {
@@ -31,14 +32,20 @@ DataHolder.prototype = {
     getHowToStartId : function() {
         return this.howToStartId;
     },
-    setSelectedCategoryId : function(s) {
-        this.selectCategoryId = s;
-    },
-    getSelectedCategoryId : function() {
-        return this.selectCategoryId;
-    },
     setBlur : function() {
         this.checkedPanel.addClass("no-blur");
+    },
+    setCategories : function(c) {
+        this.categories = c;
+    },
+    getCategories : function() {
+        return this.categories;
+    },
+    setPullContainer : function(p) {
+        this.pullContainer = p;
+    },
+    getPullContainer : function() {
+        return this.pullContainer;
     }
 };
 
@@ -46,6 +53,7 @@ function SubmitForm() {
     this.titleBox;
     this.contentBox;
     this.categoryBox;
+    this.categoryIdBox;
 }
 
 SubmitForm.prototype = {
@@ -66,60 +74,16 @@ SubmitForm.prototype = {
     },
     getCategoryBox: function() {
         return this.categoryBox;
+    },
+    setCategoryIdBox: function(c) {
+        this.categoryIdBox = c;
+    },
+    getCategoryIdBox: function() {
+        return this.categoryIdBox;
     }
 }
 
-var dataHolder = new DataHolder();
-var submitForm = new SubmitForm();
-
-var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
-    var urlArray = location.href.split('/');
-    var userId = urlArray[urlArray.length-1];
-    dataHolder.setUserId(userId);
-    submitForm.setTitleBox($('#hts-title'));
-    submitForm.setContentBox($('#hts-content'));
-    submitForm.setCategoryBox($('#hts-category'));
-
-    $$('.navbar').css('display', 'block');
-
-    $$('.closeFooterNotification').on('click', function() {
-        myApp.closeModal('.popup-notification');
-    });
-
-    $$('#answerSubmit').on('click', function() {
-        var htsContentVal = submitForm.getContentBox().val();
-        var htsTitleVal = submitForm.getTitleBox().val();
-        var htsCategoryVal = 3;
-
-        if(htsTitleVal == "" || htsContentVal == "" ){
-            myApp.alert('内容が入力されていません。', 'お知らせ');
-        } else {
-            myApp.closeModal('.popup-submit');
-
-            dataHolder.setBlur();
-            submitForm.getContentBox().val('');
-            submitForm.getTitleBox().val('');
-            submitForm.getCategoryBox().val('');
-
-            var data = {
-                user_id: dataHolder.getUserId(),
-                hts_id: dataHolder.getHowToStartId(),
-                title: htsTitleVal,
-                content: htsContentVal,
-                category_id: htsCategoryVal
-            }
-
-            $.post('/ctc/create/hts', data).done(function(){
-                console.log('Record');
-            });
-        }
-    });
-
-    $(function() {
-        myApp.popup('.popup-notification');
-        $(".footerNotification").slideDown();
-    });
-
+function fetchMatching(callback) {
     $.getJSON('/ctc/matching/json/'+dataHolder.getUserId(), function(json) {
         var jsonLength = json.length;
         for (var i = 0; i < jsonLength; i++) {
@@ -197,7 +161,6 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                     break;
             };
 
-            // console.log('leastPanelsCount:'+leastPanelsCount+' componentCount:'+componentCount)
             leastPanelsCount -= componentCount;
 
             while(controlArray.length != 0) {
@@ -205,7 +168,6 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 for(var j = controlArray.pop() -1 ; j >= 0 && widthScaleArray.length > 0 && hightScaleArray.length > 0;j--) {
                     var pWidth = windowWidthOnPort * widthScaleArray.pop();
                     var pHeight = windowWidthOnPort * hightScaleArray.pop();
-                    // console.log('width = '+pWidth+'/height = '+pHeight);
                     $answerPanel = $($answerPanels[i++]);
                     $nextColumn = $nextColumn.add($answerPanel);
                     $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
@@ -218,7 +180,79 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 
             $answerPanelsSubset.wrapAll('<div class="row"></div>');
         };
+
+        if (!(callback === undefined)) {
+            callback();
+        }
     });
+};
+
+var dataHolder = new DataHolder();
+var submitForm = new SubmitForm();
+
+var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
+    var urlArray = location.href.split('/');
+    var userId = urlArray[urlArray.length-1];
+    dataHolder.setUserId(userId);
+    submitForm.setTitleBox($('#hts-title'));
+    submitForm.setContentBox($('#hts-content'));
+    submitForm.setCategoryBox($('#hts-category'));
+    submitForm.setCategoryIdBox($('#hts-category-id'));
+
+    $$('.navbar').css('display', 'block');
+
+    $$('.closeFooterNotification').on('click', function() {
+        myApp.closeModal('.popup-notification');
+    });
+
+    $$('#answerSubmit').on('click', function() {
+        var htsContentVal = submitForm.getContentBox().val();
+        var htsTitleVal = submitForm.getTitleBox().val();
+        var htsCategoryVal = $('.special-category').val();
+
+        if(htsTitleVal == "" || htsContentVal == "" || htsCategoryVal == 0){
+            myApp.alert('内容が入力されていません。', 'お知らせ');
+        } else {
+            myApp.closeModal('.popup-submit');
+
+            dataHolder.setBlur();
+            submitForm.getContentBox().val('');
+            submitForm.getTitleBox().val('');
+            submitForm.getCategoryBox().val('');
+
+            var data = {
+                user_id: dataHolder.getUserId(),
+                hts_id: dataHolder.getHowToStartId(),
+                title: htsTitleVal,
+                content: htsContentVal,
+                category_id: htsCategoryVal
+            }
+
+            $.post('/ctc/create/hts', data).done(function(){
+                console.log('Record');
+            });
+        }
+    });
+
+    $(function() {
+        myApp.popup('.popup-notification');
+        $(".footerNotification").slideDown();
+    });
+
+    if (dataHolder.getCategories() == null){
+        $.getJSON('/ctc/get_leaves', function(json) {
+            dataHolder.setCategories(json);
+
+            var $parent = $('<select class="special-category"></select>');
+            for (var i = json.length - 1; i >= 0; i--) {
+                $parent.append($('<option value="'+json[i].id+'">'+json[i].name+'</option>'));
+            };
+            submitForm.getCategoryBox().parent().append($parent);
+            submitForm.getCategoryBox().hide();
+        });
+    }
+
+    fetchMatching();
 });
 
 mainContentsCallbacks.trigger();
