@@ -51,7 +51,7 @@
                                     <% unless category['children'].count == 0 then %>
                                       <a href="/logins/next/<%=category['id'] %>" class="item-link">
                                     <% else %>
-                                      <a href="#" class="item-link" id="cat_fin" value="<%=category['id']%>">
+                                      <a href="<%=category['id']%>" class="item-link" id="cat_fin">
                                     <% end %>
                                     <%=category['name'] %>
                                     </a>

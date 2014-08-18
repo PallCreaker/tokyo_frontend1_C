@@ -103,7 +103,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 			        pHeight = basePanelLength * hScale;
 			        maxHeightScale -= hScale;
 			        $answerPanel = $($answerPanels[i++]);
-		    		$answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
+		    	    $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
 					$answerPanel.width(pWidth);
 					$answerPanel.height(pHeight);
 					$nextColumn = $nextColumn.add($answerPanel);
