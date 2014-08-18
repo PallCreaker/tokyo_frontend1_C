@@ -27,12 +27,12 @@ DataHolder.prototype = {
         return this.userId;
     },
     setHowToStartId : function(h) {
-        this.howToStart = h;
+        this.howToStartId = h;
     },
     getHowToStartId : function() {
         return this.howToStartId;
     },
-    setBlur : function() {
+    unsetBlur : function() {
         this.checkedPanel.addClass("no-blur");
     },
     setCategories : function(c) {
@@ -80,6 +80,11 @@ SubmitForm.prototype = {
     },
     getCategoryIdBox: function() {
         return this.categoryIdBox;
+    },
+    reinitilize: function() {
+        this.contentBox.val('');
+        this.titleBox.val('');
+        this.categoryBox.val('');
     }
 }
 
@@ -113,7 +118,8 @@ function fetchMatching(callback) {
             if(!$(this).find('div.bluree').hasClass("no-blur")){
                 myApp.popup('.popup-submit');
                 dataHolder.setPanel($(this).find('div.bluree'));
-                dataHolder.setHowToStartId($(this).find('input[hidden]').val());
+                var id = $(this).find('input:hidden').val();
+                dataHolder.setHowToStartId(id);
             } else {
                 var title = $(this).find('h3').text();
                 var content = $(this).find('div.bluree').text();
@@ -123,20 +129,11 @@ function fetchMatching(callback) {
             }
         });
 
-        // no use coloring 
-        var flatcolors = [
-            // '#1abc9c','#3498db','#9b59b6','#34495e',
-            // '#16a085','#27ae60','#2980b9','#2c3e50',
-            // '#f1c40f','#e67e22','#e74c3c','#95a5a6',
-            // '#f39c12','#d35400','#c0392b','#7f8c8d'
-            // '#CCFFFF','#FFFFCC',
-        ];
-
         var $answerPanels = $(".answerPanels");
         var panelsLength = $answerPanels.length;
         var leastPanelsCount = panelsLength;
         var windowWidthOnPort = Math.min($(window).width(), $(window).height());
-        
+
         for (var i = 0; i < panelsLength; ) {
             // 基準パネルの設定
             var $answerPanelsSubset = $();
@@ -193,10 +190,7 @@ function fetchMatching(callback) {
             var $panels = $answerPanelsSubset.find('.answerPanels');
             console.log($panels);
             var $panel = $($panels[Math.floor(Math.random() * $panels.length)]);
-            $panel.addClass('colorPanel'); // colorPanelを編集
-            $panels.not($panel).each(function(i) { // ここをどうにかしてください
-                $(this).css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
-            });
+            $panel.addClass('colorPanel');
         };
 
         if (!(callback === undefined)) {
@@ -242,10 +236,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         } else {
             myApp.closeModal('.popup-submit');
 
-            dataHolder.setBlur();
-            submitForm.getContentBox().val('');
-            submitForm.getTitleBox().val('');
-            submitForm.getCategoryBox().val('');
+            submitForm.reinitilize();
 
             var data = {
                 user_id: dataHolder.getUserId(),
@@ -255,8 +246,16 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 category_id: htsCategoryVal
             }
 
+            // console.log(data);
+
             $.post('/ctc/create/hts', data).done(function(){
                 console.log('Record');
+                dataHolder.unsetBlur();
+                var title = dataHolder.getPanel().parent().find('h3').text();
+                var content = dataHolder.getPanel().parent().find('div.bluree').text();
+                myApp.popup('.popup-content');
+                $('#content-title').text(title);
+                $('#content-block').text(content);
             });
         }
     });
