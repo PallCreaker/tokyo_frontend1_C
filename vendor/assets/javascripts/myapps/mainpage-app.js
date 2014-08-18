@@ -170,7 +170,6 @@ function fetchMatching(callback) {
                     var pHeight = windowWidthOnPort * hightScaleArray.pop();
                     $answerPanel = $($answerPanels[i++]);
                     $nextColumn = $nextColumn.add($answerPanel);
-                    $answerPanel.css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
                     $answerPanel.width(pWidth);
                     $answerPanel.height(pHeight);
                 }
@@ -179,6 +178,13 @@ function fetchMatching(callback) {
             }
 
             $answerPanelsSubset.wrapAll('<div class="row"></div>');
+            var $panels = $answerPanelsSubset.find('.answerPanels');
+            console.log($panels);
+            var $panel = $($panels[Math.floor(Math.random() * $panels.length)]);
+            $panel.addClass('colorPanel'); // colorPanelを編集
+            $panels.not($panel).each(function(i) { // ここをどうにかしてください
+                $(this).css('background-color', flatcolors[Math.floor(Math.random() * flatcolors.length)]);
+            });
         };
 
         if (!(callback === undefined)) {
