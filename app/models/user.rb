@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     users = User.connection.select(statement)
     users.each { |u|
         user_id = u['id']
-        u[:specials] = Special.complete_select('select * from specials where user_id = '+user_id.to_s)
+        u[:specials] = Special.complete_select('select * from specials where user_id = '+user_id.to_s ,user_id)
         u[:interests] = Interest.complete_select('select * from interests where user_id = '+user_id.to_s)
       }
 

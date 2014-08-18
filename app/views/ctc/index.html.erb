@@ -6,7 +6,7 @@
     <script type="text/javascript" src="/assets/common/main/mainpage.js"></script>
     <link rel="stylesheet" href="/assets/common/mainpage.css" type="text/css">
   </head>
-  <body>
+  <body class="main">
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <div class="panel-overlay"></div>
@@ -22,7 +22,7 @@
               </a>
             </div>
             <div class="center sliding">
-              ○○を初めて学ぶには
+              <%= @user[:interests][0][:category]['name'] %>を初めて学ぶには
             </div>
             <div class="right">
               <a href="#" class="link icon-only open-panel">
@@ -38,51 +38,6 @@
             <div class="page-content">
               <!-- 下のhrefの意味はuser_id==3のひとにマッチングする人を要求してる -->
               <!-- <a href="matching/3" id="main-page"></a> -->
-              <div class="row">
-                <div class="col-25 answerPanels">
-                  あああを学ぶにはまずは<br>
-                  そうです。<br>
-                  にゃなｎ<br>
-                  ああああ<br>
-                  手元にあったんで<br>
-                  あんｇちゅあｇｒｄｎ<br>
-                  そんなこともあるかもしれません。
-                  以下略
-                </div>
-                <div class="col-25 answerPanels">いいいを学ぶにはまず</div>
-                <div class="col-25 answerPanels">えええを学ぶにはまず</div>
-                <div class="col-25 answerPanels">おおおを学ぶにはまず</div>
-              </div>
-              <div class="row">
-                <div class="col-25 answerPanels">
-                  あああを学ぶにはまずは<br>
-                  そうです。<br>
-                  にゃなｎ<br>
-                  ああああ<br>
-                  手元にあったんで<br>
-                  あんｇちゅあｇｒｄｎ<br>
-                  そんなこともあるかもしれません。
-                  以下略
-                </div>
-                <div class="col-25 answerPanels">いいいを学ぶにはまず</div>
-                <div class="col-25 answerPanels">えええを学ぶにはまず</div>
-                <div class="col-25 answerPanels">おおおを学ぶにはまず</div>
-              </div>
-              <div class="row">
-                <div class="col-25 answerPanels">
-                  あああを学ぶにはまずは<br>
-                  そうです。<br>
-                  にゃなｎ<br>
-                  ああああ<br>
-                  手元にあったんで<br>
-                  あんｇちゅあｇｒｄｎ<br>
-                  そんなこともあるかもしれません。
-                  以下略
-                </div>
-                <div class="col-25 answerPanels">いいいを学ぶにはまず</div>
-                <div class="col-25 answerPanels">えええを学ぶにはまず</div>
-                <div class="col-25 answerPanels">おおおを学ぶにはまず</div>
-              </div>
             </div>
           </div>
         </div>
@@ -101,7 +56,7 @@
                 <div class="item-inner">
                   <div class="item-title label">初めに何した？</div>
                   <div class="item-input">
-                    <textarea></textarea>
+                    <textarea id="firstStep"></textarea>
                   </div>
                 </div>
               </div>
@@ -113,7 +68,7 @@
                 <div class="item-inner">
                   <div class="item-title label">その後は？</div>
                   <div class="item-input">
-                    <textarea></textarea>
+                    <textarea id="secondStep"></textarea>
                   </div>
                 </div>
               </div>
@@ -127,9 +82,9 @@
     <!-- notification Popup -->
     <div class="popup popup-notification">
       <div class="footerNotification">
-        <h3>お知らせ</h3>
-        <p>パネルをタップしてください</p>
-        <a href="#" data-panel="center" style="width:50px;margin:0 auto;" class="button active closeFooterNotification">OK</a>
+        <h3>あなたの興味のある<%= @user[:interests][0][:category]['name'] %>が<br>モザイクになっています</h3>
+        <p>どれかモザイクをタップしてください</p>
+        <a href="#" data-panel="center" class="button active closeFooterNotification">OK</a>
       </div>
     </div>
 
