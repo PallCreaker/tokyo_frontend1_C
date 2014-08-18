@@ -22,13 +22,16 @@ myApp.onPageInit('next', function (page) {
 
         if (!_is_alert_shown) {
             _is_alert_shown = true;
-            $(".firstInformation").slideDown();
+            myApp.popup('.popup-firstInformation');
+            $(".firstInformationFooterNotification").slideDown();
+
+            //$(".firstInformation").slideDown();
         }
     }
-    $(function() {
-        myApp.popup('.popup-notification');
-        $(".footerNotification").slideDown();
+    $$('.closeFooterNotification').on('click', function() {
+        myApp.closeModal('.popup-notification');
     });
+
     
     //closeFirstInformation
     $$('#closeFirstInformation').on('click', function () {
