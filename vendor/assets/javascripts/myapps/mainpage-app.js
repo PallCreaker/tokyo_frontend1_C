@@ -20,7 +20,9 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 '-webkit-filter': 'none',
                 'filter': 'none'
             });
-        }
+            $('#firstStep').val('');
+            $('#secondStep').val('');
+        }     
     });
 
 	$(function() {
