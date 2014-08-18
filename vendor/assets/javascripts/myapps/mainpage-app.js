@@ -114,6 +114,12 @@ function fetchMatching(callback) {
                 myApp.popup('.popup-submit');
                 dataHolder.setPanel($(this).find('div.bluree'));
                 dataHolder.setHowToStartId($(this).find('input[hidden]').val());
+            } else {
+                var title = 'タイトル';
+                var content = '中身';
+                myApp.popup('.popup-content');
+                $('#content-title').text(title);
+                $('#content-block').text(content);
             }
         });
 
@@ -211,7 +217,9 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
         submitForm.getTitleBox().val('');
         submitForm.getCategoryBox().val('');
     });
-
+    $$('#contentClose').on('click',function(){
+        myApp.closeModal('.popup-content');
+    });
     $$('#answerSubmit').on('click', function() {
         var htsContentVal = submitForm.getContentBox().val();
         var htsTitleVal = submitForm.getTitleBox().val();

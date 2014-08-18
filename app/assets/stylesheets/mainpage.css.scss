@@ -22,7 +22,7 @@
                 color: #FFFFFF;
             }
         }
-        #requireAnswer{
+        #requireAnswer,#insideContent{
             margin-top:100px;
             background-color: #2c3e50;
             color: white;
@@ -49,4 +49,15 @@
 
 .list-block{
     color: black;
+}
+
+#inside-popup-content{
+    margin-top:40px;
+    min-height:400px;
+    margin:10px;
+    padding:10px;
+    background-color:white;
+    #content-block{
+        min-height:300px;
+    }
 }
