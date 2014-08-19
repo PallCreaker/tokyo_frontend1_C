@@ -63,7 +63,7 @@
     <!-- About Popup -->
     <div class="popup popup-submit">
       <div id="requireAnswer">
-        <div class="content-block-title">経験のある分野についてを教えて下さい<br><span>答えていただくとモザイクが消えます</span></div>
+        <div class="content-block-title">経験のある分野について教えて下さい<br><span id="submit-hint">答えていただくとモザイクが消えます</span></div>
         <div class="list-block inset">
 
           <ul>
@@ -73,6 +73,9 @@
                 <div class="item-inner">
                   <div class="item-input">
                     <input type="text" id="hts-title" placeholder="Title">
+                  </div>
+                  <div class="item-after title-hint">
+                    を学ぶには
                   </div>
                 </div>
               </div>
@@ -112,7 +115,7 @@
     <div class="popup popup-notification">
       <div class="footerNotification">
         <h3 class="select"><%= @user[:interests][0][:category]['name'] %>に関しての回答が<br>モザイクになっています</h3>
-        <p>どれかモザイクをタップしてください</p>
+        <p id="request-touch">どれかモザイクをタップしてください</p>
         <a href="#" data-panel="center" class="button active closeFooterNotification">OK</a>
       </div>
     </div>

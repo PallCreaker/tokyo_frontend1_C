@@ -115,6 +115,11 @@ function fetchMatching(callback) {
         };
 
         $$(".answerPanels").on('click', function() {
+            if ($('.answerPanels').length != 0) {
+                $('#submit-hint').show();
+                $('#answerCancel').show();
+            }
+
             if(!$(this).find('div.bluree').hasClass("no-blur")){
                 myApp.popup('.popup-submit');
                 dataHolder.setPanel($(this).find('div.bluree'));
@@ -193,6 +198,16 @@ function fetchMatching(callback) {
             $panel.addClass('colorPanel');
         };
 
+        if ($('.answerPanels').length == 0) {
+            $('#submit-hint').text('');
+            $('#answerCancel').hide();
+            var contenthtml = '申し訳ありません<br>現在回答がありません';
+            $('.footerNotification > h3.select').text('');
+            $('.footerNotification > h3.select').append(contenthtml);
+            $('.footerNotification > #request-touch').text('');
+            myApp.popup('.popup-submit');
+        }
+
         if (!(callback === undefined)) {
             callback();
         }
@@ -219,9 +234,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 
     $$('#answerCancel').on('click', function() {
         myApp.closeModal('.popup-submit');
-        submitForm.getContentBox().val('');
-        submitForm.getTitleBox().val('');
-        submitForm.getCategoryBox().val('');
+        submitForm.reinitilize();
     });
     $$('#contentClose').on('click',function(){
         myApp.closeModal('.popup-content');
@@ -244,11 +257,11 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 title: htsTitleVal,
                 content: htsContentVal,
                 category_id: htsCategoryVal
-            }
+            };
 
-            // console.log(data);
+            console.log(data);
 
-            $.post('/ctc/create/hts', data).done(function(){
+            $.post('/ctc/create/hts', data,function(){
                 console.log('Record');
                 dataHolder.unsetBlur();
                 var title = dataHolder.getPanel().parent().find('h3').text();

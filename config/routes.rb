@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # get 'ctc/index'
   # post 'ctc/index'
   match 'ctc/index/:user_id' => 'ctc#index', via: [:get]
+  match 'ctc/main/:user_id' => 'ctc#index', via: [:get]
   match 'ctc/create' => 'ctc#create', via: [:post]
   # get 'ctc/' => 'ctc#index'
   match 'ctc/matching/:user_id' => 'ctc#matching', via: [:get]

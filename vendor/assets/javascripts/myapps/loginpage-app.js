@@ -15,18 +15,19 @@ var _is_alert_shown = false;
 // myApp.onPageInit('index', function (page) {
 //     $$('.navbar').css('display', 'none');
 // }
+var _is_removed_badge = false;
+
 myApp.onPageInit('next', function (page) {
     $$('.navbar').css('display', 'block');
+    console.log(page);
     if (page.url === '/login/next/0') {
-        $('.back').remove();
+
         var msg = '今あなたが学びたい、手をつけようとしている分野を選択してください';
 
         if (!_is_alert_shown) {
             _is_alert_shown = true;
             myApp.popup('.popup-firstInformation');
             $(".firstInformationFooterNotification").slideDown();
-
-            //$(".firstInformation").slideDown();
         }
     }
     $$('.closeFooterNotification').on('click', function() {
@@ -66,9 +67,9 @@ myApp.onPageInit('next', function (page) {
     $$('a#sel-cat').on('click', function () {
         // location.href = '/ctc/index';
         var scrf_token = $('meta[name="csrf-token"]').attr('content');
-        console.log(selected.attr('href'));
+        var category_id = selected.find('input:hidden').val();
         var data = {
-            category: selected.attr('href'),
+            category: category_id,
             authenticity_token: scrf_token
         };
         $.post('/ctc/create', data, function(res) {
