@@ -219,9 +219,7 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
 
     $$('#answerCancel').on('click', function() {
         myApp.closeModal('.popup-submit');
-        submitForm.getContentBox().val('');
-        submitForm.getTitleBox().val('');
-        submitForm.getCategoryBox().val('');
+        submitForm.reinitilize();
     });
     $$('#contentClose').on('click',function(){
         myApp.closeModal('.popup-content');

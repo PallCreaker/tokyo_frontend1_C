@@ -15,18 +15,19 @@ var _is_alert_shown = false;
 // myApp.onPageInit('index', function (page) {
 //     $$('.navbar').css('display', 'none');
 // }
+var _is_removed_badge = false;
+
 myApp.onPageInit('next', function (page) {
     $$('.navbar').css('display', 'block');
+    console.log(page);
     if (page.url === '/login/next/0') {
-        $('.back').remove();
+
         var msg = '今あなたが学びたい、手をつけようとしている分野を選択してください';
 
         if (!_is_alert_shown) {
             _is_alert_shown = true;
             myApp.popup('.popup-firstInformation');
             $(".firstInformationFooterNotification").slideDown();
-
-            //$(".firstInformation").slideDown();
         }
     }
     $$('.closeFooterNotification').on('click', function() {
