@@ -48,6 +48,8 @@ class CtcController < ApplicationController
     @read = ReadAttr.create(user_id: @user_id.to_i, hts_id: @hts_id.to_i,is_read: true)
     @read.save
     @hts = Howtostart.create(category_id: @category_id.to_i, author_id: @user_id.to_i, title: @title, content: @content)
+    @special = Special.create(category_id: @category_id.to_i, user_id: @user_id.to_i)
+    @special.save
 
     if @hts.save
       render :json => @hts

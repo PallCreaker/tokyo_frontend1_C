@@ -244,11 +244,11 @@ var mainContentsCallbacks = myApp.onPageInit('main', function(page) {
                 title: htsTitleVal,
                 content: htsContentVal,
                 category_id: htsCategoryVal
-            }
+            };
 
-            // console.log(data);
+            console.log(data);
 
-            $.post('/ctc/create/hts', data).done(function(){
+            $.post('/ctc/create/hts', data,function(){
                 console.log('Record');
                 dataHolder.unsetBlur();
                 var title = dataHolder.getPanel().parent().find('h3').text();
