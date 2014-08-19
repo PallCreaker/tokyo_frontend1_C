@@ -199,7 +199,7 @@ function fetchMatching(callback) {
         };
 
         if ($('.answerPanels').length == 0) {
-            $('#submit-hint').hide();
+            $('#submit-hint').text('');
             $('#answerCancel').hide();
             var contenthtml = '申し訳ありません<br>現在回答がありません';
             $('.footerNotification > h3.select').text('');
