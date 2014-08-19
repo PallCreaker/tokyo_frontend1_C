@@ -66,9 +66,9 @@ myApp.onPageInit('next', function (page) {
     $$('a#sel-cat').on('click', function () {
         // location.href = '/ctc/index';
         var scrf_token = $('meta[name="csrf-token"]').attr('content');
-        console.log(selected.attr('href'));
+        var category_id = selected.find('input:hidden').val();
         var data = {
-            category: selected.attr('href'),
+            category: category_id,
             authenticity_token: scrf_token
         };
         $.post('/ctc/create', data, function(res) {
