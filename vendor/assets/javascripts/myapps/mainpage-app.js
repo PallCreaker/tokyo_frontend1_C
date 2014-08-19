@@ -115,6 +115,11 @@ function fetchMatching(callback) {
         };
 
         $$(".answerPanels").on('click', function() {
+            if ($('.answerPanels').length != 0) {
+                $('#submit-hint').show();
+                $('#answerCancel').show();
+            }
+
             if(!$(this).find('div.bluree').hasClass("no-blur")){
                 myApp.popup('.popup-submit');
                 dataHolder.setPanel($(this).find('div.bluree'));
@@ -192,6 +197,12 @@ function fetchMatching(callback) {
             var $panel = $($panels[Math.floor(Math.random() * $panels.length)]);
             $panel.addClass('colorPanel');
         };
+
+        if ($('.answerPanels').length == 0) {
+            $('#submit-hint').hide();
+            $('#answerCancel').hide();
+            myApp.popup('.popup-submit');
+        }
 
         if (!(callback === undefined)) {
             callback();
